@@ -1,12 +1,5 @@
-<div *ngIf="!approved">
-  <h1><strong class="text-center">100 Questions</strong></h1>
-  <br><br>
-  <h6>Enter your password below</h6>
-  <input name="text" type="password" placeholder="password" [(ngModel)]="approvalText">
-  <button class="btn btn-success btn-sm" (click)="toggleApproved()">Submit</button>
-</div>
-<div *ngIf="approved">
-<h1 class="text-center">100 Questions</h1>
+<h1><strong class="text-center">100 Questions</strong></h1>
+<div>
 <div name="mainContainer">
   <ngb-accordion class="accordion" #acc="ngbAccordion" activeIds="ngb-panel-0">
     <ngb-panel id="title" title="Captain Corelli's Mandolin">
@@ -29,7 +22,7 @@
       </ng-template>
     </ngb-panel>
     <span *ngFor="let question of questions">
-      <ngb-panel title="{{checkAnswered(question) + '  ' + question.question}}">
+      <ngb-panel title="{{question.question}}">
         <ng-template ngbPanelContent>
           <form #newAnswerForm="ngForm">
             <input type="hidden" name="question.id">
