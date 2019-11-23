@@ -1,0 +1,80 @@
+<div *ngIf="!approved">
+  <h1><strong class="text-center">100 Questions</strong></h1>
+  <br><br>
+  <h6>Enter your password below</h6>
+  <input name="text" type="password" placeholder="password" [(ngModel)]="approvalText">
+  <button class="btn btn-success btn-sm" (click)="toggleApproved()">Submit</button>
+</div>
+<div *ngIf="approved">
+<h1 class="text-center">100 Questions</h1>
+<div name="mainContainer">
+  <ngb-accordion class="accordion" #acc="ngbAccordion" activeIds="ngb-panel-0">
+    <ngb-panel id="title" title="Captain Corelli's Mandolin">
+      <ng-template ngbPanelContent>
+        <blockquote>
+          “Love is a temporary madness. It erupts like an earthquake and then
+          subsides. And when it subsides you have to make a decision. You have
+          to work out whether your roots have become so entwined together that
+          it is inconceivable that you should ever part. Because this is what
+          love is. Love is not breathlessness, it is not excitement, it is not
+          the promulgation of promises of eternal passion. That is just being
+          "in love" which any of us can convince ourselves we are. Love itself
+          is what is left over when being in love has burned away, and this is
+          both an art and a fortunate accident. Your mother and I had it, we had
+          roots that grew towards each other underground, and when all the
+          pretty blossoms had fallen from our branches we found that we were one
+          tree and not two.”<br /><br />
+          - Louis de Bernières
+        </blockquote>
+      </ng-template>
+    </ngb-panel>
+    <span *ngFor="let question of questions">
+      <ngb-panel title="{{checkAnswered(question) + '  ' + question.question}}">
+        <ng-template ngbPanelContent>
+          <form #newAnswerForm="ngForm">
+            <input type="hidden" name="question.id">
+            <div class="md-form">
+            name1 <br />
+            <textarea
+              class="md-textarea md-textarea-auto form-control"
+              mdbInput
+              (click)="editAnswer(question)"
+              name="userAnswer0"
+              cols="50"
+              rows="3"
+              placeholder="Answer Question Here"
+              [(ngModel)]="question.userAnswerO"
+            >
+            </textarea
+            ></div>
+            <input
+              class="btn btn-info float-right"
+              type="button"
+              value="Save"
+              (click)="saveAnswers()"
+            /><br />
+            <div class="md-form">
+            name2 <br>
+            <textarea class="md-textarea md-textarea-auto form-control"
+              mdbInput
+              (click)="editAnswer(question)"
+              name="userAnswerX"
+              cols="50"
+              rows="3"
+              placeholder="Answer Question Here"
+              [(ngModel)]="question.userAnswerX"
+            ></textarea>
+          </div>
+            <input
+              class="btn btn-primary float-right"
+              type="button"
+              value="Save"
+              (click)="saveAnswers()"
+            />
+          </form>
+        </ng-template>
+      </ngb-panel>
+    </span>
+  </ngb-accordion>
+</div>
+</div>
