@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Question } from '../models/question';
@@ -10,15 +11,24 @@ import { throwError } from 'rxjs';
 })
 export class QuestionService {
 
-  private geturl = 'http://localhost:8050/api/questions/'; // developmenet
-  private updateurl = 'http://localhost:8050/api/question/'; // development
-  // private geturl = '/OneHundredQuestions/api/questions/'; // production
-  // private updateurl = '/OneHundredQuestions/api/question/'; // production
+  private getAllUrl = 'http://localhost:8050/api/questions/'; // developmenet
+  private getOneUrl = 'http://localhost:8050/api/question/'; // development
+  // private getAllUrl = '/OneHundredQuestions/api/questions/'; // production
+  // private getOneUrl = '/OneHundredQuestions/api/question/'; // production
 
-  constructor(private http: HttpClient) {}
+  private credentials = this.auth.getCredentials();
+  loggedIn = this.auth.checkLogin();
+
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   index() {
-    return this.http.get<Question[]>(this.geturl).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${this.credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Question[]>(this.getAllUrl, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('question.service.ts index error');
@@ -27,14 +37,14 @@ export class QuestionService {
 
   }
 
-  update(question: Question) {
-    console.log(question);
+  questionById(question: Question) {
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        Authorization: `Basic ${this.credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put(this.updateurl + question.id, question, httpOptions).pipe(
+    return this.http.get(this.getOneUrl + question.id, httpOptions ).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('question.service.ts update error');

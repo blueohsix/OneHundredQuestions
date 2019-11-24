@@ -25,13 +25,6 @@ export class QuestionComponent implements OnInit {
     this.selected = question;
     console.log(this.selected);
   }
-  saveAnswers() {
-    this.editedQuestion = Object.assign({}, this.selected);
-
-    this.updateQuestion();
-  }
-  toggleApproved() {
-  }
 
   reload() {
     this.questionService.index().subscribe(
@@ -45,16 +38,7 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
-  updateQuestion() {
-    this.questionService.update(this.editedQuestion).subscribe(
-      lifeIsGood => {
-        console.log('update() reached!');
-      },
-      whenThingsGoBad => {
-        console.error('error in updateQuestion() question.component.ts');
-      }
-    );
-  }
+
   checkAnswered(question: Question) {
     if (question.userAnswerO !== '' && question.userAnswerX !== '') {
       return '<html><strong>:D     </strong><html>';
