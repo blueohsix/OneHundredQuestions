@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { QuestionService } from './../../services/question.service';
 import { Question } from './../../models/question';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +17,7 @@ export class QuestionComponent implements OnInit {
   answeredUserAnswerO: boolean;
   answeredUserAnswerX: boolean;
 
-  constructor(private questionService: QuestionService) {}
+  constructor(private questionService: QuestionService, private auth: AuthService) {}
 
   ngOnInit() {
     this.reload();
@@ -24,6 +25,10 @@ export class QuestionComponent implements OnInit {
   editAnswer(question: Question) {
     this.selected = question;
     console.log(this.selected);
+  }
+
+  checkLogin(){
+    return this.auth.checkLogin();
   }
 
   reload() {
