@@ -17,7 +17,6 @@ export class AnswerService {
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   index() {
-
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${this.credentials}`,
@@ -28,6 +27,21 @@ export class AnswerService {
       catchError((err: any) => {
         console.log(err);
         return throwError('answer.service.ts index error');
+      })
+    );
+  }
+
+  answersByUserId(uid: number) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${this.credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.get<Answer[]>(this.baseUrl + 'answer/' + uid, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('answersByUserId() error');
       })
     );
   }

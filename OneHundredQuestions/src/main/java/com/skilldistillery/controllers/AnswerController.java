@@ -41,6 +41,22 @@ public class AnswerController {
 			return null;
 		}
 	}
+	@GetMapping("answer/{uid}")
+	public List<Answer> answersByUserId(@PathVariable Integer uid, HttpServletRequest request, HttpServletResponse response, Principal principal) {
+		try {
+			List<Answer> answers = service.showByUserId(uid);
+			if (answers == null) {
+				response.setStatus(404);
+			} else {
+				response.setStatus(200);
+			}
+			return answers;
+		} catch (Exception e) {
+			response.setStatus(400);
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	@PutMapping("answer/{id}")
 	public Answer updateAnswer(@PathVariable Integer id, @RequestBody Answer answer, HttpServletRequest request,

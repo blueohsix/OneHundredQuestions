@@ -44,17 +44,17 @@ public class Question {
 		this.question = question;
 	}
 
-	public List<Answer> getAnswers() {
-		return answers;
-	}
+//	public List<Answer> getAnswers() {
+//		return answers;
+//	}
 
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
-	}
+//	public void setAnswers(List<Answer> answers) {
+//		this.answers = answers;
+//	}
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", answers=" + answers + "]";
+		return "Question [id=" + id + ", question=" + question + "]";
 	}
 
 	@Override

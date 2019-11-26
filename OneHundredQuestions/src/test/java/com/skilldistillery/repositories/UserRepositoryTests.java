@@ -43,5 +43,14 @@ public class UserRepositoryTests {
 		
 		assertEquals("casey.e.asher@outlook.com", user.getAssociateUsername());
 	}
+	
+	@Test
+	@DisplayName("Tests if search by username is working correctly")
+	public void test3() {
+		User user = repo.findByUsername("casey.e.asher@outlook.com");
+		System.err.println(user);
+		assertNotNull(user.getName());
+		assertEquals("Casey" ,user.getName());
+	}
 
 }

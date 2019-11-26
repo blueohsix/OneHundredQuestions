@@ -18,6 +18,7 @@ public class AnswerServiceImpl implements AnswerService {
 	public List<Answer> showAll() {
 		return repo.findAll();
 	}
+	
 
 	@Override
 	public Answer updateAnswer(Integer id, Answer answer) {
@@ -31,5 +32,11 @@ public class AnswerServiceImpl implements AnswerService {
 		} else {
 			return null;
 		}
+	}
+
+
+	@Override
+	public List<Answer> showByUserId(Integer uid) {
+		return repo.findByUserId(uid);
 	}
 }

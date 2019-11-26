@@ -9,6 +9,8 @@ public interface UserService {
 	List<User> index();
 
 	User showById(Integer id);
+	
+	User findByUsername(String username);
 
 	User createUser(User user);
 

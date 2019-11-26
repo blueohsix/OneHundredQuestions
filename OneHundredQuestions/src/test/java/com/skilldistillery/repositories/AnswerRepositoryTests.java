@@ -37,7 +37,7 @@ public class AnswerRepositoryTests {
 	@DisplayName("Tests if name of user answer index 0 is correct")
 	public void test2() {
 		List<Answer> answers = repo.findAll();
-		assertEquals("Karol", answers.get(0).getUser().getName());
+		assertNotNull(answers.get(2));
 	}
 
 }
