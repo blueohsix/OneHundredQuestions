@@ -1,0 +1,12 @@
+<nav class="navbar navbar-dark fixed-top bg-dark">
+  <div>
+    <div class="navbar-header">
+      <a class="navbar-brand nav-right" href="#"><h4>100 Questions</h4></a>
+    </div>
+  </div>
+  <app-logout *ngIf="checkLogin()"></app-logout>
+  <app-login *ngIf="!checkLogin()"></app-login>
+</nav>
+<div>
+  <app-register *ngIf="!checkLogin()"></app-register>
+</div>
