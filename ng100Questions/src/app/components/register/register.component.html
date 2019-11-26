@@ -1,0 +1,40 @@
+<div class="container-fluid">
+  <br><br><br>
+<div>
+  <p>
+    Be aware that for the best experience, your partner must create a user
+    account too. Their username is linked to your account and your username is
+    linked to theirs. This enables you to view eachother's answers to the
+    questions.
+  </p>
+  <blockquote>
+    Enjoy! <br />
+    -Casey
+  </blockquote>
+</div>
+<div *ngIf="createNew">
+<div *ngIf="createNew" id="registerFormDiv">
+    <h4>Create New Account</h4>
+  <form id="registerForm" #registerForm="ngForm">
+    <input type="text" name="username" ngModel placeholder="Username" /><br>
+    <input type="text" name="password" ngModel placeholder="Password" /><br>
+    <input type="text" name="name" ngModel placeholder="First Name" /><br>
+    <input
+      type="text"
+      name="associateUsername"
+      ngModel
+      placeholder="Partner's Username"
+    />
+    <br /><input
+      class="btn btn-success btn-sm"
+      type="submit"
+      name="submit"
+      value="Register Account"
+      (click)="register(registerForm)"
+    />
+    <button (click)="createNew = false" class="btn btn-warning btn-sm">Cancel</button>
+  </form>
+</div>
+</div>
+<span *ngIf="!createNew" class="float-right"><button (click)="createNew = !createNew" class="btn btn-warning btn-sm">{{toggleText}}</button></span>
+</div>

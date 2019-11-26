@@ -1,18 +1,12 @@
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
+<nav class="navbar navbar-dark fixed-top bg-dark">
+  <div>
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">100 Questions</a>
+      <a class="navbar-brand nav-right" href="#"><h4>100 Questions</h4></a>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li *ngIf="!checkLogin()">
-        <span class="glyphicon glyphicon-log-in">Register</span>
-      </li>
-      <li *ngIf="!checkLogin()">
-        <span class="glyphicon glyphicon-log-in">Login</span>
-      </li>
-      <li *ngIf="checkLogin()">
-        <span class="glyphicon glyphicon-log-out">Logout</span>
-      </li>
-    </ul>
   </div>
+  <app-logout *ngIf="checkLogin()"></app-logout>
+  <app-login *ngIf="!checkLogin()"></app-login>
 </nav>
+<div>
+  <app-register *ngIf="!checkLogin()"></app-register>
+</div>

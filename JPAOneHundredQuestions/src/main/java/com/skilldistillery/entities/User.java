@@ -22,19 +22,18 @@ public class User {
 	private String name;
 	@Column(name="username")
 	private String username;
-	@JsonIgnore
 	private String password;
 	@Column(name = "associate_username")
 	private String associateUsername;
-	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Answer> answers;
-	@JsonIgnore
 	private String role;
-	@JsonIgnore
 	private int enabled;
 
 
+
+	public User() {
+	}
 
 	public int getId() {
 		return id;

@@ -27,7 +27,7 @@ export class QuestionComponent implements OnInit {
     console.log(this.selected);
   }
 
-  checkLogin(){
+  checkLogin() {
     return this.auth.checkLogin();
   }
 

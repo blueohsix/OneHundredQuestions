@@ -1,12 +1,34 @@
-<div>
+<span
+  ><button
+    *ngIf="!requestLogin"
+    (click)="toggle()"
+    class="btn btn-primary btn-sm"
+  >
+    Login
+  </button></span
+>
+<div *ngIf="requestLogin">
   <form id="loginForm" #loginForm="ngForm">
-    <input type="text" name="username" ngModel placeholder="Username" />
-    <input type="password" name="password" ngModel placeholder="Password" />
     <input
+      class="loginFormBorder"
+      type="text"
+      name="username"
+      ngModel
+      placeholder="Username"
+    />
+    <input
+      class="loginFormBorder"
+      type="password"
+      name="password"
+      ngModel
+      placeholder="Password"
+    /><input
+      class="btn btn-primary btn-sm"
       type="submit"
       name="submit"
       value="Login"
       (click)="login(loginForm)"
     />
+    <button class="btn btn-warning btn-sm" (click)="toggle()">Cancel</button>
   </form>
 </div>
