@@ -45,6 +45,11 @@ public class UserController {
 		}
 		return user;
 	}
+	
+	@GetMapping("user/{username}")
+	public User findByUsername(@PathVariable("username") String username, Principal principal) {
+		return serv.findByUsername(username);
+	}
 
 	@PostMapping("users")
 	public User create(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req,

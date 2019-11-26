@@ -25,6 +25,7 @@ public class User {
 	private String password;
 	@Column(name = "associate_username")
 	private String associateUsername;
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<Answer> answers;
 	private String role;
@@ -75,13 +76,13 @@ public class User {
 		this.associateUsername = associateUsername;
 	}
 
-	public List<Answer> getAnswers() {
-		return answers;
-	}
-
-	public void setAnswers(List<Answer> answers) {
-		this.answers = answers;
-	}
+//	public List<Answer> getAnswers() {
+//		return answers;
+//	}
+//
+//	public void setAnswers(List<Answer> answers) {
+//		this.answers = answers;
+//	}
 
 	public String getRole() {
 		return role;
@@ -102,7 +103,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", associateUsername="
-				+ associateUsername + ", answers=" + answers + ", role=" + role+ "]";
+				+ associateUsername + ", role=" + role+ "]";
 	}
 
 	@Override

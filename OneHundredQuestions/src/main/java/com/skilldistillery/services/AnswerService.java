@@ -6,6 +6,7 @@ import com.skilldistillery.entities.Answer;
 
 public interface AnswerService {
 	List<Answer> showAll();
+	List<Answer> showByUserId(Integer uid);
 	Answer updateAnswer(Integer id, Answer answer);
 	
 }

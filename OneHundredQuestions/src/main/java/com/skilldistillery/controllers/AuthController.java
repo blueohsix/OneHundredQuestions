@@ -36,6 +36,7 @@ public class AuthController {
 
 	@RequestMapping(path = "/authenticate", method = RequestMethod.GET)
 	public Principal authenticate(Principal principal) {
+		System.err.println(principal);
 	    return principal;
 	}
 
