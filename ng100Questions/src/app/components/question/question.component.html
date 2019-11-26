@@ -1,5 +1,5 @@
 <br /><br /><br />
-<div id="questionDiv" *ngIf="fullyLoaded">
+<div id="questionDiv" *ngIf="fullyLoaded && checkLogin()">
   <div name="mainContainer">
     <ngb-accordion
       class="accordion"
@@ -29,17 +29,17 @@
         <ngb-panel title="{{ question.question }}">
           <ng-template ngbPanelContent>
             <form #newAnswerForm="ngForm">
-              <input type="hidden" name="question.id" />
+              <input type="hidden" name="{{question.id}}" />
               <div class="md-form">
                 <strong>{{ player1.name }}:</strong> <br />
                 <textarea
                   class="md-textarea md-textarea-auto form-control"
                   mdbInput
-                  name="{{ getAppropriateAnswer(question.id, 1).answer }}"
+                  name="{{getAppropriateAnswer(question.id, 1).answer}}"
                   cols="50"
                   rows="3"
                   placeholder="Answer Question Here"
-                  value="{{ getAppropriateAnswer(question.id, 1).answer }}"
+                  value="{{getAppropriateAnswer(question.id, 1).answer}}"
                 >
                 </textarea>
               </div>
