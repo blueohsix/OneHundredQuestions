@@ -6,6 +6,7 @@ import { Question } from './../../models/question';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AnswerService } from 'src/app/services/answer.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
