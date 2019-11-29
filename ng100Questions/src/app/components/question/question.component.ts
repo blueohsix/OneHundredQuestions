@@ -19,6 +19,8 @@ export class QuestionComponent implements OnInit {
   player1: User;
   player2: User;
   fullyLoaded: boolean;
+  selectedAnswer: Answer;
+  editedAnswer: string;
 
   constructor(
     private questionService: QuestionService,
@@ -116,13 +118,28 @@ export class QuestionComponent implements OnInit {
   getAppropriateAnswer(qid: number, playerId: number): Answer {
     const playerAnswers =
       playerId === 1 ? this.player1Answers : this.player2Answers;
-    const selectedAnswer = playerAnswers.find(a => a.question.id === qid);
+    let answer = playerAnswers.find(a => a.question.id === qid);
 
-    if (selectedAnswer === undefined) {
-      const answer: Answer = new Answer();
+    if (answer === undefined && playerId === 1) {
+      answer = new Answer();
+      answer.answer = 'Answer Question Here';
+      console.log(answer);
       return answer;
     }
-    return selectedAnswer;
+    if (answer === undefined && playerId === 2) {
+      answer = new Answer();
+      answer.answer = this.player2.name + ' has not yet answered this question.';
+      console.log(answer);
+      return answer;
+    }
+    console.log(answer);
 
+    return answer;
+
+  }
+  saveAnswer(form) {
+   console.log(form.value);
+   console.log(this.selectedAnswer);
+   console.log(this.editedAnswer);
   }
 }
