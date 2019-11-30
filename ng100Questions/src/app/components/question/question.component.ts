@@ -116,31 +116,9 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
-  getAppropriateAnswer(qid: number, playerId: number): Answer {
-    const playerAnswers =
-      playerId === 1 ? this.player1Answers : this.player2Answers;
-    let answer = playerAnswers.find(a => a.question.id === qid);
 
-    if (answer === undefined && playerId === 1) {
-      answer = new Answer();
-      answer.answer = 'Answer Question Here';
-      console.log(answer);
-      return answer;
-    }
-    if (answer === undefined && playerId === 2) {
-      answer = new Answer();
-      answer.answer = this.player2.name + ' has not yet answered this question.';
-      console.log(answer);
-      return answer;
-    }
-    console.log(answer);
-
-    return answer;
-
-  }
-  saveAnswer(form) {
+  saveAnswer(form: NgForm, qid: number) {
    console.log(form.value);
-   console.log(this.selectedAnswer);
-   console.log(this.editedAnswer);
+   console.log('questionId: ' +  qid + '\n player1 id: ' + this.player1.id);
   }
 }

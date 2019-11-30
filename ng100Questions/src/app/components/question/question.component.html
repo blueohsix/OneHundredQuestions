@@ -25,22 +25,10 @@
           </blockquote>
         </ng-template>
       </ngb-panel>
-      <span *ngFor="let question of questions">
+      <span *ngFor="let question of questions" >
         <ngb-panel title="{{ question.question }}">
           <ng-template ngbPanelContent>
             <form #newAnswerForm="ngForm">
-              <input
-                type="hidden"
-                name="questionId"
-                ngModel
-                value="{{ question.id }}"
-              />
-              <input
-                type="hidden"
-                name="userId"
-                ngModel
-                value="{{ player1.id }}"
-              />
               <div class="md-form">
                 <strong>{{ player1.name }}:</strong> <br />
                 <textarea
@@ -50,7 +38,7 @@
                   cols="50"
                   rows="3"
                   placeholder="Answer Question Here"
-                  value="{{ getAppropriateAnswer(question.id, 1).answer }}"
+                  [ngModel]="player1Answers[question.id - 1].answer"
                 >
                 </textarea>
               </div>
@@ -58,16 +46,16 @@
                 class="btn btn-info float-right"
                 type="button"
                 value="Save"
-                (click)="saveAnswer(newAnswerForm)"
+                (click)="saveAnswer(newAnswerForm, question.id)"
               /><br />
               <br />
+              <div>
+                <strong>{{player2.name}}:</strong> <br />
+                <blockquote>
+                  {{player2Answers[question.id - 1].answer}}
+                </blockquote>
+              </div>
             </form>
-            <div>
-              <strong>{{ player2.name }}:</strong> <br />
-              <blockquote>
-                {{ getAppropriateAnswer(question.id, 2).answer }}
-              </blockquote>
-            </div>
           </ng-template>
         </ngb-panel>
       </span>
