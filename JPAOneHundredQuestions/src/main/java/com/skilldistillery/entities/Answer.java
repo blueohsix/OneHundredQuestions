@@ -54,9 +54,9 @@ public class Answer {
 //		return user;
 //	}
 //
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 
 	@Override
 	public String toString() {

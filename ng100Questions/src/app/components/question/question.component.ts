@@ -6,6 +6,7 @@ import { Question } from './../../models/question';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { AnswerService } from 'src/app/services/answer.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-question',
@@ -19,6 +20,8 @@ export class QuestionComponent implements OnInit {
   player1: User;
   player2: User;
   fullyLoaded: boolean;
+  selectedAnswer: Answer;
+  editedAnswer: string;
 
   constructor(
     private questionService: QuestionService,
@@ -113,16 +116,9 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
-  getAppropriateAnswer(qid: number, playerId: number): Answer {
-    const playerAnswers =
-      playerId === 1 ? this.player1Answers : this.player2Answers;
-    const selectedAnswer = playerAnswers.find(a => a.question.id === qid);
 
-    if (selectedAnswer === undefined) {
-      const answer: Answer = new Answer();
-      return answer;
-    }
-    return selectedAnswer;
-
+  saveAnswer(form: NgForm, qid: number) {
+   console.log(form.value);
+   console.log('questionId: ' +  qid + '\n player1 id: ' + this.player1.id);
   }
 }
