@@ -116,9 +116,53 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
+  safelyRetrieveAnswer(qid: number, uid: number) {
+    const playerAnswers = uid === 1 ? this.player1Answers : this.player2Answers;
+    if (playerAnswers.length >= qid) {
+      if (uid === 1) {
+        return playerAnswers[qid - 1].answer;
+      }
+      return playerAnswers[qid - 1].answer;
+    }
+    if (uid === 2) {
+      return this.player2.name + ' has not answered this question yet.';
+    }
+    return '';
+  }
 
   saveAnswer(form: NgForm, qid: number) {
-   console.log(form.value);
-   console.log('questionId: ' +  qid + '\n player1 id: ' + this.player1.id);
+    console.log(form.value);
+    console.log('questionId: ' + qid + '\n player1 id: ' + this.player1.id);
+    let answer = this.player1Answers.find(a => a.question.id === qid);
+    if (answer) {
+      answer.answer = form.value.answer;
+      answer.user = new User();
+      answer.user.id = this.player1.id;
+      this.answerService.update(answer, answer.id).subscribe(
+        lifeIsGood => {
+          console.log('answer updated successfully');
+        },
+        whenThingsGoBad => {
+          console.error('error in saveAnswer()');
+        }
+      );
+    }
+    if (!answer) {
+      answer = new Answer();
+      answer.answer = form.value.answer;
+      answer.question = new Question();
+      answer.question.id = qid;
+      answer.user = new User();
+      answer.user.id = this.player1.id;
+      console.log('new answer: ' + answer);
+      this.answerService.create(answer).subscribe(
+        lifeIsGood => {
+          console.log('answer created and saved successfully');
+        },
+        whenThingsGoBad => {
+          console.error('error in saveAnswer()');
+        }
+      );
+    }
   }
 }

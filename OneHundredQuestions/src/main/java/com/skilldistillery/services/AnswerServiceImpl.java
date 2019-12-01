@@ -39,4 +39,16 @@ public class AnswerServiceImpl implements AnswerService {
 	public List<Answer> showByUserId(Integer uid) {
 		return repo.findByUserId(uid);
 	}
+	
+	@Override
+	public Answer createAnswer(Answer answer) {
+		try {
+			Answer newAnswer = repo.saveAndFlush(answer);
+			return newAnswer;
+		}
+		catch(Exception e) {
+			System.err.println("Failure creating answer");
+			return answer;
+		}
+	}
 }

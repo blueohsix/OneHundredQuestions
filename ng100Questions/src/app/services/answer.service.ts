@@ -46,17 +46,31 @@ export class AnswerService {
     );
   }
 
-  update(answer: Answer) {
+  update(answer: Answer, aid: number) {
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${this.credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put(this.baseUrl + answer.id, answer, httpOptions).pipe(
+    return this.http.put(this.baseUrl + 'answer/' +  aid, answer, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('answer.service.ts update error');
+      })
+    );
+  }
+  create(answer: Answer) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        Authorization: `Basic ${this.credentials}`,
+        'X-Requested-With': 'XMLHttpRequest'
+      })
+    };
+    return this.http.post(this.baseUrl + 'answer/', answer, httpOptions).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError('answer.service.ts create error');
       })
     );
   }
