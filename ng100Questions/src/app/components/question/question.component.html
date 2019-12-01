@@ -38,7 +38,7 @@
                   cols="50"
                   rows="3"
                   placeholder="Answer Question Here"
-                  [ngModel]="player1Answers[question.id - 1].answer"
+                  [ngModel]="safelyRetrieveAnswer(question.id, 1)"
                 >
                 </textarea>
               </div>
@@ -52,7 +52,7 @@
               <div>
                 <strong>{{player2.name}}:</strong> <br />
                 <blockquote>
-                  {{player2Answers[question.id - 1].answer}}
+                  {{safelyRetrieveAnswer(question.id, 2)}}
                 </blockquote>
               </div>
             </form>

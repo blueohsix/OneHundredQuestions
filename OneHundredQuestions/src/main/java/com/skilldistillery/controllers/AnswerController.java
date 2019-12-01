@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,6 +80,28 @@ public class AnswerController {
 			return null;
 		}
 
+	}
+	@PostMapping("answer/") 
+		public Answer createAnswer(@RequestBody Answer answer, HttpServletRequest request,
+			HttpServletResponse response, Principal principal) {
+		
+		try {
+
+			Answer newAnswer = service.createAnswer(answer);
+			StringBuffer url = request.getRequestURL();
+			url.append("/");
+			url.append(newAnswer.getId());
+			System.err.println(url);
+			response.setStatus(200);
+			response.setHeader("Location", url.toString());
+			return newAnswer;
+
+		} catch (Exception e) {
+			response.setStatus(400);
+			e.printStackTrace();
+			return null;
+		}
+		
 	}
 
 }
