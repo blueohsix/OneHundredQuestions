@@ -4,6 +4,7 @@
       <a class="navbar-brand nav-right" href="#"><h4>100 Questions</h4></a>
     </div>
   </div>
+  <app-profile *ngIf="checkLogin()"></app-profile>
   <app-logout *ngIf="checkLogin()"></app-logout>
   <app-login *ngIf="!checkLogin()"></app-login>
 </nav>
