@@ -9,12 +9,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserService {
+
   private baseUrl = 'http://localhost:8050/api/'; // development
   // private baseUrl = '/OneHundredQuestions/api/users/'; // production
 
   private credentials = this.auth.getCredentials();
   loggedIn = this.auth.checkLogin();
   constructor(private http: HttpClient, private auth: AuthService) {}
+
 
   index() {
     const httpOptions = {

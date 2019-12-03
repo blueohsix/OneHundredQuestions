@@ -12,6 +12,7 @@ import { NgForm } from '@angular/forms';
 export class ProfileComponent implements OnInit {
   currentUser: User;
   editPorFavor: boolean;
+  deletePorFavor: boolean;
 
   constructor(private auth: AuthService, private user: UserService) {}
 
@@ -39,10 +40,40 @@ export class ProfileComponent implements OnInit {
   }
   editAccount(form: NgForm) {
     console.log(form.value);
-    console.log(this.user);
+    console.log(this.currentUser);
+    this.currentUser.name = form.value.name;
+    this.currentUser.username = form.value.username;
+    this.currentUser.password = form.value.password;
+    this.currentUser.associateUsername = form.value.associateUsername;
+    this.user.updateUser(this.currentUser).subscribe(
+      lifeIsGood => {
+        this.currentUser = lifeIsGood;
+        this.auth.logout();
+      },
+      whenThingsGoBad => {
+        console.error('error in getProfile()');
+      }
+    );
+  }
+  deleteAccount(form: NgForm) {
+    if (form.value.verify === 'Delete Me') {
+      this.user.deleteUser(this.currentUser.id).subscribe(
+        lifeIsGood => {
+          console.log(this.currentUser.username + ' successfully deleted');
+          this.auth.logout();
+        },
+        whenThingsGoBad => {
+          console.error('error in deleteAccount()');
+        }
+      );
+    }
 
   }
-  toggle() {
+
+  toggleEdit() {
     this.editPorFavor = !this.editPorFavor;
+  }
+  toggleDelete() {
+    this.deletePorFavor = !this.deletePorFavor;
   }
 }

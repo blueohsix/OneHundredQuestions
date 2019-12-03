@@ -1,12 +1,13 @@
 <nav class="navbar navbar-dark fixed-top bg-dark">
-  <div>
-    <div class="navbar-header">
-      <a class="navbar-brand nav-right" href="#"><h4>100 Questions</h4></a>
-    </div>
-  </div>
-  <app-profile *ngIf="checkLogin()"></app-profile>
-  <app-logout *ngIf="checkLogin()"></app-logout>
-  <app-login *ngIf="!checkLogin()"></app-login>
+
+      <span class="navbar-header">
+        <a class="navbar-brand nav-right" href="#">100 Questions</a>
+    </span>
+    <span>
+        <app-profile *ngIf="checkLogin()"></app-profile>
+        <app-logout *ngIf="checkLogin()" class="float-right"></app-logout>
+        <app-login *ngIf="!checkLogin()"></app-login>
+      </span>
 </nav>
 <div>
   <app-register *ngIf="!checkLogin()"></app-register>
