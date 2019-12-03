@@ -83,7 +83,13 @@ export class QuestionComponent implements OnInit {
     this.userService.showByUsername(this.player1.associateUsername).subscribe(
       lifeIsGood => {
         this.player2 = lifeIsGood;
-        this.getAssociateAnswers(this.player2.id);
+        if (this.player2) {
+          this.getAssociateAnswers(this.player2.id);
+        } else {
+          this.player2 = new User();
+          this.player2.name = 'No Partner Linked';
+          this.fullyLoaded = true;
+        }
       },
       whenThingsGoBad => {
         console.error('error in player1 getNames()');
@@ -117,17 +123,24 @@ export class QuestionComponent implements OnInit {
     );
   }
   safelyRetrieveAnswer(qid: number, uid: number) {
+    let answer: string;
     const playerAnswers = uid === 1 ? this.player1Answers : this.player2Answers;
-    if (playerAnswers.length >= qid) {
-      if (uid === 1) {
-        return playerAnswers[qid - 1].answer;
+    try {
+      answer = playerAnswers.find(a => a.question.id === qid).answer;
+      return answer;
+    } catch (error) {
+      if (answer) {
+        return answer;
       }
-      return playerAnswers[qid - 1].answer;
+      if (uid === 2) {
+        if (this.player2.name !== 'No Partner Linked') {
+          return this.player2.name + ' has not answered this question yet.';
+        }
+        // tslint:disable-next-line: max-line-length
+        return 'Add your partner\'s username to your profile. \nIf you feel you\'re seeing this in error, make sure your partner\'s account is active and your username has been added to their profile';
+      }
+      return '';
     }
-    if (uid === 2) {
-      return this.player2.name + ' has not answered this question yet.';
-    }
-    return '';
   }
 
   saveAnswer(form: NgForm, qid: number) {
