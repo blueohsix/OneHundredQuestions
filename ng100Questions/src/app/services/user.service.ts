@@ -10,18 +10,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
-  private baseUrl = 'http://localhost:8050/api/'; // development
-  // private baseUrl = '/OneHundredQuestions/api/users/'; // production
+  // private baseUrl = 'http://localhost:8050/api/'; // development
+  private baseUrl = '/apps/OneHundredQuestions/api/'; // production
 
-  private credentials = this.auth.getCredentials();
   loggedIn = this.auth.checkLogin();
   constructor(private http: HttpClient, private auth: AuthService) {}
 
 
   index() {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -30,33 +30,35 @@ export class UserService {
         console.log(err);
         return throwError('user.service.ts index error');
       })
-    );
-  }
+      );
+    }
 
-  showByUsername(username: string) {
-    const httpOptions = {
+    showByUsername(username: string) {
+      const credentials = this.auth.getCredentials();
+      const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<User>(this.baseUrl + 'user/' + username, httpOptions)
+      return this.http.get<User>(this.baseUrl + 'user/' + username, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.error(err);
           return throwError('showByUsername failed');
         })
-      );
-  }
+        );
+      }
 
-  showUserById(id: number) {
-    const httpOptions = {
+      showUserById(id: number) {
+        const credentials = this.auth.getCredentials();
+        const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<User>(this.baseUrl + 'users/' + id, httpOptions).pipe(
+        return this.http.get<User>(this.baseUrl + 'users/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('user.service.ts showById error');
@@ -65,10 +67,10 @@ export class UserService {
   }
 
   updateUser(user: User) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -81,9 +83,10 @@ export class UserService {
   }
 
   deleteUser(id: number) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };

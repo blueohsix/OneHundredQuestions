@@ -10,16 +10,17 @@ import { AuthService } from './auth.service';
 })
 export class AnswerService {
 
-  private baseUrl = 'http://localhost:8050/api/'; // development
-  // private baseUrl = '/OneHundredQuestions/api/'; // production
-  private credentials = this.auth.getCredentials();
+  // private baseUrl = 'http://localhost:8050/api/'; // development
+  private baseUrl = '/apps/OneHundredQuestions/api/'; // production
+
   loggedIn = this.auth.checkLogin();
   constructor(private http: HttpClient, private auth: AuthService) { }
 
   index() {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -32,9 +33,10 @@ export class AnswerService {
   }
 
   answersByUserId(uid: number) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -47,9 +49,10 @@ export class AnswerService {
   }
 
   update(answer: Answer, aid: number) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -61,9 +64,10 @@ export class AnswerService {
     );
   }
   create(answer: Answer) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };

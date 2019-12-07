@@ -7,16 +7,16 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:8050/'; // development
-  // private baseUrl = '/OneHundredQuestions/'; // production
+
+  // private baseUrl = 'http://localhost:8050/'; // development
+  private baseUrl = '/apps/OneHundredQuestions/'; // production
+
   logoutSuccess: boolean;
 
   constructor(private http: HttpClient) { }
 
   login(username, password) {
-    // Make credentials
     const credentials = this.generateBasicAuthCredentials(username, password);
-    // Send credentials as Authorization header (this is spring security convention for basic auth)
     const httpOptions = {
       headers: new HttpHeaders({
         Authorization: `Basic ${credentials}`,
@@ -31,6 +31,7 @@ export class AuthService {
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
           localStorage.setItem('username' , username);
+          window.location.reload();
           return res;
         }),
         catchError((err: any) => {

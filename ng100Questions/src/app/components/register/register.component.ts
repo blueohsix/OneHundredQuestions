@@ -26,7 +26,6 @@ export class RegisterComponent implements OnInit {
   this.createNew = !this.createNew;
   }
   register(registerForm: NgForm) {
-    console.log('Register Form: ' + registerForm.value.name);
     const user: User = registerForm.value;
     user.name = registerForm.value.name;
     user.username = registerForm.value.username;
@@ -34,7 +33,6 @@ export class RegisterComponent implements OnInit {
     user.associateUsername = registerForm.value.associateUsername;
     user.enabled = 1;
     user.role = 'user';
-    console.log('User: ' + user.name);
 
     this.auth.register(user).subscribe(
       data => {

@@ -11,20 +11,20 @@ import { throwError } from 'rxjs';
 })
 export class QuestionService {
 
-  private getAllUrl = 'http://localhost:8050/api/questions/'; // developmenet
-  private getOneUrl = 'http://localhost:8050/api/question/'; // development
-  // private getAllUrl = '/OneHundredQuestions/api/questions/'; // production
-  // private getOneUrl = '/OneHundredQuestions/api/question/'; // production
+  // private getAllUrl = 'http://localhost:8050/api/questions/'; // developmenet
+  // private getOneUrl = 'http://localhost:8050/api/question/'; // development
+  private getAllUrl = '/apps/OneHundredQuestions/api/questions/'; // production
+  private getOneUrl = '/apps/OneHundredQuestions/api/question/'; // production
 
-  private credentials = this.auth.getCredentials();
   loggedIn = this.auth.checkLogin();
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   index() {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
@@ -38,9 +38,10 @@ export class QuestionService {
   }
 
   questionById(question: Question) {
+    const credentials = this.auth.getCredentials();
     const httpOptions = {
       headers: new HttpHeaders({
-        Authorization: `Basic ${this.credentials}`,
+        Authorization: `Basic ${credentials}`,
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
