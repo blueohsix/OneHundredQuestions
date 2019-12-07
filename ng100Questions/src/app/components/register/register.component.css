@@ -1,4 +1,4 @@
-#contrasting {
+#contrasting, #CreateNew {
   color: white;
   font-size: larger;
   text-shadow: -1px 1px 0 #000, 1px 1px 0 #000, 1px -1px 0 #000,
@@ -14,4 +14,8 @@
   right: 0;
   bottom: 0;
   left: 0;
+}
+#CreateNew{
+  border: 2px solid white;
+  padding: 2px 2px;
 }

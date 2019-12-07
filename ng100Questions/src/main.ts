@@ -6,7 +6,13 @@ import { environment } from './environments/environment';
 
 if (environment.production) {
   enableProdMode();
+  // hiding logs while in production
+  if (window) {
+    // tslint:disable-next-line: only-arrow-functions
+    window.console.log = function() {};
+  }
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule)
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
   .catch(err => console.error(err));
