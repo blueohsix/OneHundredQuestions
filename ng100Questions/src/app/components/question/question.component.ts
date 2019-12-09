@@ -68,6 +68,8 @@ export class QuestionComponent implements OnInit {
           if (this.player1.associateUsername) {
             this.getAssociateUser();
           } else {
+            this.player2 = new User();
+            this.player2.name = 'No Partner Linked';
             this.fullyLoaded = true;
           }
           this.getAnswers(this.player1.id);
@@ -92,7 +94,7 @@ export class QuestionComponent implements OnInit {
         }
       },
       whenThingsGoBad => {
-        console.error('error in player1 getNames()');
+        console.error('error in getAssociateUser()');
       }
     );
   }
