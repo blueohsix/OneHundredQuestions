@@ -53,7 +53,9 @@ public class UserServiceImpl implements UserService {
 		User updateUser = null;
 		if(userOpt.isPresent()) {
 			 updateUser = userOpt.get();
+			 if(user.getPassword().length() > 0 ) {
 			updateUser.setPassword(encoder.encode(user.getPassword()));
+			 }
 			updateUser.setUsername(user.getUsername());
 			updateUser.setName(user.getName());
 			updateUser.setAssociateUsername(user.getAssociateUsername());
