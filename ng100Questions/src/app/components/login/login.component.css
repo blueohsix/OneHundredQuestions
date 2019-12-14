@@ -1,1 +1,8 @@
-
+#badcreds {
+  font: bold;
+  color: crimson;
+  text-align: right;
+  background-color: white;
+  padding-left: 3px;
+  padding-right: 3px;
+}

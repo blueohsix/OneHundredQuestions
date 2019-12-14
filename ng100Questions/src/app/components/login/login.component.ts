@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   requestLogin: boolean;
+  failed: boolean;
 
   constructor(private auth: AuthService) { }
 
@@ -23,9 +24,11 @@ export class LoginComponent implements OnInit {
       .login(loginForm.value.username, loginForm.value.password)
       .subscribe(
         data => {
+          this.failed = false;
           console.log('login(): user logged in.');
         },
         err => {
+          this.failed = true;
           console.error('login(): error logging in.');
           console.error(err);
         }

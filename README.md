@@ -14,10 +14,7 @@ JUnit 5, Postman
 (Jasmine and Karma testing soon to be implemented)
 
 #### Planned Updates
-* Text input prompts (validation) for a better user-experience.
-  - message for incorrect login information
-  - message for failed account update
-  - message for failed account creation
+* Fix second to last question in database: extra "to"
 * Numbered questions
 * Visual indication for answered questions without expanding panel
 * Characters remaining in text box
@@ -27,6 +24,9 @@ JUnit 5, Postman
 
 
 #### Changelog
+December 13th:
+  - Added message for incorrect login information
+  - Added messages for blank input fields on account registration
 December 8th:  
   - Fixed an issue that prevented expansion of panel for accounts that don't have a partner's username associated
   - user profile update no longer saves empty passwords if the user is not updating their password

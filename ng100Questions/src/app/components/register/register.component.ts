@@ -12,6 +12,10 @@ export class RegisterComponent implements OnInit {
   registered: boolean;
   createNew: boolean;
   toggleText: string;
+  takenUsername: boolean;
+  blankUsername: boolean;
+  blankPassword: boolean;
+  blankName: boolean;
 
   constructor(private auth: AuthService) {}
 
@@ -27,23 +31,33 @@ export class RegisterComponent implements OnInit {
   }
   register(registerForm: NgForm) {
     const user: User = registerForm.value;
-    user.name = registerForm.value.name;
-    user.username = registerForm.value.username;
-    user.password = registerForm.value.password;
+    // tslint:disable-next-line: no-unused-expression
+    registerForm.value.name ? (user.name = registerForm.value.name) && (this.blankName = false) : this.blankName = true;
+    // tslint:disable-next-line: no-unused-expression
+    registerForm.value.username ? (user.username = registerForm.value.username) && (this.blankUsername = false) : this.blankUsername = true;
+    // tslint:disable-next-line: no-unused-expression
+    registerForm.value.password ? (user.password = registerForm.value.password) && (this.blankPassword = false) : this.blankPassword = true;
     user.associateUsername = registerForm.value.associateUsername;
     user.enabled = 1;
     user.role = 'user';
 
+    if (!this.blankName && !this.blankPassword && !this.blankUsername) {
     this.auth.register(user).subscribe(
       data => {
+        this.takenUsername = false;
+        this.blankPassword = false;
+        this.blankName = false;
+        this.blankUsername = false;
         this.createNew = false;
         this.toggleText = 'New Account';
         console.log('register(): user registered.');
       },
       err => {
+        this.takenUsername = true;
         console.error('register(): error registering.');
         console.error(err);
       }
     );
+    }
   }
 }

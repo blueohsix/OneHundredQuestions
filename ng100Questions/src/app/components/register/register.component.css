@@ -19,3 +19,11 @@
   border: 2px solid white;
   padding: 2px 2px;
 }
+.badstuff {
+  font: bold;
+  color: crimson;
+  text-align: right;
+  background-color: white;
+  padding-left: 3px;
+  padding-right: 3px;
+}

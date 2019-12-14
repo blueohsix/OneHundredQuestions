@@ -29,6 +29,9 @@
       value="Login"
       (click)="login(loginForm)"
     />
-    <button class="btn btn-warning btn-sm" (click)="toggle()">Cancel</button>
+    <button class="btn btn-warning btn-sm" (click)="toggle(); failed = false">Cancel</button>
   </form>
+</div>
+<div *ngIf="failed">
+  <span id="badcreds">Username or Password Incorrect</span>
 </div>
