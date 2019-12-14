@@ -27,6 +27,7 @@ JUnit 5, Postman
 December 13th:
   - Added message for incorrect login information
   - Added messages for blank input fields on account registration
+  
 December 8th:  
   - Fixed an issue that prevented expansion of panel for accounts that don't have a partner's username associated
   - user profile update no longer saves empty passwords if the user is not updating their password
