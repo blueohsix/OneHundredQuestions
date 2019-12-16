@@ -22,6 +22,7 @@ export class QuestionComponent implements OnInit {
   fullyLoaded: boolean;
   selectedAnswer: Answer;
   editedAnswer: string;
+  check = String.fromCodePoint(0x2705);
 
   constructor(
     private questionService: QuestionService,
@@ -51,6 +52,10 @@ export class QuestionComponent implements OnInit {
       this.questionService.index().subscribe(
         lifeIsGood => {
           this.questions = lifeIsGood;
+          for (let i = 0; i < this.questions.length; i++) {
+            this.questions[i].question =
+              i + 1 + ': ' + this.questions[i].question;
+          }
           this.getNames();
         },
         whenThingsGoBad => {
@@ -103,6 +108,16 @@ export class QuestionComponent implements OnInit {
     this.answerService.answersByUserId(uid).subscribe(
       lifeIsGood => {
         this.player1Answers = lifeIsGood;
+        // tslint:disable-next-line: prefer-for-of
+        for (let i = 0; i < this.questions.length; i++) {
+          if (i < this.player1Answers.length) {
+            if (this.player1Answers[i].answer) {
+              // tslint:disable-next-line: max-line-length
+              this.questions[(this.player1Answers[i].question.id) - 1 ].question =
+                this.questions[(this.player1Answers[i].question.id) - 1 ].question  + ' ' + this.check;
+            }
+          }
+        }
         if (!this.player1.associateUsername) {
           this.fullyLoaded = true;
         }
