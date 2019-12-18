@@ -13,6 +13,7 @@ Angular 8.3, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
 JUnit 5, Postman
 
 #### Planned Updates
+* Left align text on mobile
 * Hide partner's answers for unanswered Questions
 * Password reset
 * Characters remaining in text box
