@@ -13,6 +13,8 @@ Angular 8.3, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
 JUnit 5, Postman
 
 #### Planned Updates
+* Hide partner's answers for unanswered Questions
+* Password reset
 * Characters remaining in text box
 * An indication for saved vs non-saved answer
 * Filter questions by category (example: hide questions about parenting for couples who have no desire for children)
@@ -23,7 +25,7 @@ JUnit 5, Postman
 December 16th:
   - Removed extra "to" on Question 99
   - Questions numbered
-  - Answered question indictor
+  - Answered question indicator
 
 December 13th:
   - Added message for incorrect login information
