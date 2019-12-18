@@ -177,7 +177,7 @@ export class QuestionComponent implements OnInit {
         }
       );
     }
-    if (!answer) {
+    if (!answer.answer) {
       answer = new Answer();
       answer.answer = form.value.answer;
       answer.question = new Question();
