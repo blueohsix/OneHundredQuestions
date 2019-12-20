@@ -35,6 +35,15 @@ export class QuestionComponent implements OnInit {
     this.reload();
   }
 
+  expandPanel(id: string) {
+    const panel = document.getElementById(id);
+    if (panel.className.indexOf('w3-show') === -1) {
+      panel.className += ' w3-show';
+    } else {
+      panel.className = panel.className.replace(' w3-show', '');
+    }
+  }
+
   checkLogin() {
     if (!this.auth.checkLogin()) {
       this.player1 = null;
@@ -52,10 +61,6 @@ export class QuestionComponent implements OnInit {
       this.questionService.index().subscribe(
         lifeIsGood => {
           this.questions = lifeIsGood;
-          for (let i = 0; i < this.questions.length; i++) {
-            this.questions[i].question =
-              i + 1 + ': ' + this.questions[i].question;
-          }
           this.getNames();
         },
         whenThingsGoBad => {
@@ -177,7 +182,7 @@ export class QuestionComponent implements OnInit {
         }
       );
     }
-    if (!answer.answer) {
+    if (!answer) {
       answer = new Answer();
       answer.answer = form.value.answer;
       answer.question = new Question();

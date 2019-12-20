@@ -1,1 +1,16 @@
-
+.w3-block {
+  white-space: normal;
+}
+.answerArea {
+  padding: 5%;
+}
+#questionDiv {
+  padding-top: 5px;
+}
+#mandolinTitle {
+  font-weight: bolder;
+  text-shadow: 1px 1px 0 #444
+}
+blockquote {
+  padding-top: 3%;
+}

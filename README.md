@@ -13,7 +13,6 @@ Angular 8.3, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
 JUnit 5, Postman
 
 #### Planned Updates
-* Left align text on mobile
 * Hide partner's answers for unanswered Questions
 * Password reset
 * Characters remaining in text box
@@ -23,6 +22,10 @@ JUnit 5, Postman
 
 
 #### Changelog
+December 20th:
+  - Left aligned text
+  - Visual overhaul via W3-CSS. Cleaner, more functional. Starting phase-out of bootstrap.
+
 December 16th:
   - Removed extra "to" on Question 99
   - Questions numbered
