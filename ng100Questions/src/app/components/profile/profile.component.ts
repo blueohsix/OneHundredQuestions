@@ -11,7 +11,6 @@ import { NgForm } from '@angular/forms';
 })
 export class ProfileComponent implements OnInit {
   currentUser: User;
-  editPorFavor: boolean;
   deletePorFavor: boolean;
 
   constructor(private auth: AuthService, private user: UserService) {}
@@ -21,6 +20,10 @@ export class ProfileComponent implements OnInit {
       this.getProfile();
     }
   }
+  closeModal() {
+    document.getElementById('profileModal').style.display = 'none';
+  }
+
   checkLogin() {
     if (!this.auth.checkLogin()) {
       this.currentUser = null;
@@ -39,8 +42,6 @@ export class ProfileComponent implements OnInit {
     );
   }
   editAccount(form: NgForm) {
-    console.log(form.value);
-    console.log(this.currentUser);
     this.currentUser.name = form.value.name;
     this.currentUser.username = form.value.username;
     this.currentUser.password = form.value.password;
@@ -68,10 +69,6 @@ export class ProfileComponent implements OnInit {
       );
     }
 
-  }
-
-  toggleEdit() {
-    this.editPorFavor = !this.editPorFavor;
   }
   toggleDelete() {
     this.deletePorFavor = !this.deletePorFavor;

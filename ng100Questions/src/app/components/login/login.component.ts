@@ -7,7 +7,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  requestLogin: boolean;
   failed: boolean;
 
   constructor(private auth: AuthService) { }
@@ -15,8 +14,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  toggle() {
-  this.requestLogin = !this.requestLogin;
+  closeModal() {
+    document.getElementById('loginModal').style.display = 'none';
   }
 
   login(loginForm) {

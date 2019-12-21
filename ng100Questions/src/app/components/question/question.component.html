@@ -1,7 +1,7 @@
 <br /><br />
 <div id="questionDiv" *ngIf="fullyLoaded && checkLogin()">
   <div name="mainContainer">
-    <button (click)="expandPanel('mandolin')" class="w3-btn w3-block w3-teal">
+    <button (click)="expandPanel('mandolin')" class="w3-btn w3-block w3-indigo">
       Captain Corelli's Mandolin
     </button>
 
@@ -36,7 +36,7 @@
           <div class="md-form">
             <strong>{{ player1.name }}:</strong> <br />
             <textarea
-              class="md-textarea md-textarea-auto form-control"
+              class="md-textarea md-textarea-auto form-control w3-input w3-border"
               mdbInput
               name="answer"
               cols="50"
@@ -47,7 +47,8 @@
             </textarea>
           </div>
           <input
-            class="btn btn-info float-right"
+            id="saveButton"
+            class="w3-button w3-blue w3-round-large"
             type="button"
             value="Save"
             (click)="saveAnswer(newAnswerForm, question.id)"
@@ -55,9 +56,9 @@
           <br />
           <div>
             <strong>{{ player2.name }}:</strong> <br />
-            <blockquote>
+
               {{ safelyRetrieveAnswer(question.id, 2) }}
-            </blockquote>
+
           </div>
         </form>
       </div>

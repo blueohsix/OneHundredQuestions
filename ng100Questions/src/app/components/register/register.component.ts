@@ -9,6 +9,7 @@ import { User } from 'src/app/models/user';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
+  failed: boolean;
   registered: boolean;
   createNew: boolean;
   toggleText: string;
@@ -21,6 +22,10 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.toggleText = 'New Account';
+  }
+
+  closeModal() {
+    document.getElementById('registerModal').style.display = 'none';
   }
 
   checkLogin() {

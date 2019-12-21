@@ -22,6 +22,9 @@ JUnit 5, Postman
 
 
 #### Changelog
+December 21st:
+  - Completed phase-out of bootstrap. Visual overhaul 90% complete. 
+
 December 20th:
   - Left aligned text
   - Visual overhaul via W3-CSS. Cleaner, more functional. Starting phase-out of bootstrap.

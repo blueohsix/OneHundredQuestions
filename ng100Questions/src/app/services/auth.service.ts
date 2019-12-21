@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { tap, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -7,9 +8,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
-
-  // private baseUrl = 'http://localhost:8050/'; // development
-  private baseUrl = '/apps/OneHundredQuestions/'; // production
 
   logoutSuccess: boolean;
 
@@ -26,7 +24,7 @@ export class AuthService {
 
     // create request to authenticate credentials
     return this.http
-      .get(this.baseUrl + 'authenticate', httpOptions)
+      .get(environment.baseUrl + 'authenticate', httpOptions)
       .pipe(
         tap((res) => {
           localStorage.setItem('credentials' , credentials);
@@ -43,7 +41,7 @@ export class AuthService {
 
   register(user) {
     // create request to register a new account
-    return this.http.post(this.baseUrl + 'register', user)
+    return this.http.post(environment.baseUrl + 'register', user)
     .pipe(
       catchError((err: any) => {
         console.log(err);

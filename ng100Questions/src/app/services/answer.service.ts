@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Answer } from '../models/answer';
@@ -10,8 +11,7 @@ import { AuthService } from './auth.service';
 })
 export class AnswerService {
 
-  // private baseUrl = 'http://localhost:8050/api/'; // development
-  private baseUrl = '/apps/OneHundredQuestions/api/'; // production
+  private append = 'api/';
 
   loggedIn = this.auth.checkLogin();
   constructor(private http: HttpClient, private auth: AuthService) { }
@@ -24,7 +24,7 @@ export class AnswerService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Answer[]>(this.baseUrl + 'answers', httpOptions).pipe(
+    return this.http.get<Answer[]>(environment.baseUrl + this.append + 'answers', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('answer.service.ts index error');
@@ -40,7 +40,7 @@ export class AnswerService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Answer[]>(this.baseUrl + 'answer/' + uid, httpOptions).pipe(
+    return this.http.get<Answer[]>(environment.baseUrl + this.append + 'answer/' + uid, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('answersByUserId() error');
@@ -56,7 +56,7 @@ export class AnswerService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put(this.baseUrl + 'answer/' +  aid, answer, httpOptions).pipe(
+    return this.http.put(environment.baseUrl + this.append + 'answer/' +  aid, answer, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('answer.service.ts update error');
@@ -71,7 +71,7 @@ export class AnswerService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.post(this.baseUrl + 'answer/', answer, httpOptions).pipe(
+    return this.http.post(environment.baseUrl + this.append + 'answer/', answer, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('answer.service.ts create error');

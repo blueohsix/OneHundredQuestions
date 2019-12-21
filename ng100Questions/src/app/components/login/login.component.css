@@ -1,8 +1,11 @@
 #badcreds {
   font: bold;
   color: crimson;
-  text-align: right;
-  background-color: white;
-  padding-left: 3px;
-  padding-right: 3px;
+}
+label {
+  color: black;
+}
+form {
+  padding-top: 5px;
+  padding-bottom: 35px;
 }

@@ -1,74 +1,94 @@
-<span *ngIf="!editPorFavor">
-  <button class="btn btn-sm btn-info" (click)="toggleEdit()">Profile</button>
-</span>
+<button
+  id="registerButton"
+  onclick="document.getElementById('profileModal').style.display='block'"
+  class="w3-button w3-small w3-light-gray w3-round-large"
+>
+  <b>Profile</b>
+</button>
 
-<span *ngIf="editPorFavor && !deletePorFavor">
-  <div id="EditAccountDiv">
-    <h4 class="text-white">Edit Account</h4>
-    <form #editForm="ngForm">
-      <input
-        type="text"
-        name="username"
-        [(ngModel)]="currentUser.username"
-        placeholder="Username"
-      /><label>Username </label><br />
-      <input type="text" name="password" ngModel placeholder="Password" /><label
-        >Password </label
-      ><br />
-      <input
-        type="text"
-        name="name"
-        [(ngModel)]="currentUser.name"
-        placeholder="First Name"
-      /><label>First Name</label><br />
-      <label id="partnerUsername"
-        ><input
+<div id="profileModal" class="w3-modal">
+  <div class="w3-modal-content w3-animate-top w3-card-4">
+    <header class="w3-container w3-blue">
+      <span (click)="closeModal()" class="w3-display-topright w3-button">X</span>
+      <h3>Profile</h3>
+    </header>
+    <div class="w3-container">
+      <form #editForm="ngForm">
+        <label><b>Username</b></label>
+        <input
+          class="w3-input w3-border w3-margin-bottom"
+          type="text"
+          name="username"
+          [(ngModel)]="currentUser.username"
+          placeholder="Username"/>
+
+        <label><b>Password</b></label>
+        <input
+          class="w3-input w3-border w3-margin-bottom"
+          type="text"
+          name="password"
+          ngModel
+          placeholder="Password"/>
+
+        <label><b>First Name</b></label>
+        <input
+          class="w3-input w3-border w3-margin-bottom"
+          type="text"
+          name="name"
+          [(ngModel)]="currentUser.name"
+          placeholder="First Name"/>
+
+        <label><b>Partner's Username</b></label>
+        <input
+          class="w3-input w3-border w3-margin-bottom"
           type="text"
           name="associateUsername"
           [(ngModel)]="currentUser.associateUsername"
-          placeholder="Partner's Username"
-        />
-        Partner's Username</label
-      ><br /><input
-        class="btn btn-success btn-sm"
-        type="submit"
-        name="submit"
-        value="Save Changes"
-        (click)="editAccount(editForm)"
-      />
-      <button (click)="toggleEdit()" class="btn btn-warning btn-sm">
-        Cancel
-      </button>
-    </form>
-  </div>
-  <button
-    *ngIf="!deletePorFavor"
-    class="btn btn-danger btn-sm"
-    (click)="toggleDelete()"
-  >
-    Delete Account
-  </button>
-</span>
-<div *ngIf="deletePorFavor">
-  <form #deleteForm="ngForm">
-    <label class="text-white">Type "Delete Me"</label><br /><input
-      type="text"
-      name="verify"
-      ngModel
-      value="Enter 'Delete Me' Here"
-    /><input
-      class="btn btn-danger btn-sm"
-      type="submit"
-      name="submit"
-      value="Delete Account"
-      (click)="deleteAccount(deleteForm)"
-    />
-    <br />
+          placeholder="Partner's Username"/>
+
+        <input
+          class="w3-button w3-blue w3-display-bottomleft"
+          type="submit"
+          name="submit"
+          value="Save Changes"
+          (click)="editAccount(editForm)"/>
+
+        <app-logout class="w3-button w3-blue w3-display-bottomright"></app-logout>
+
+      </form>
+    </div>
+
     <button
+      id="deleteButton"
+      *ngIf="!deletePorFavor"
+      class="w3-button w3-tiny w3-light-gray w3-round-large w3-display-topmiddle"
       (click)="toggleDelete()"
-      class="btn btn-warning btn-sm"
     >
-      Cancel
+      Delete Account
     </button>
-  </form>
+
+    <div id="deleteDiv" *ngIf="deletePorFavor" class="w3-container">
+      <form #deleteForm="ngForm">
+        <label>Type "<b>Delete Me</b>"</label>
+        <input
+          class="w3-input w3-border w3-margin-bottom"
+          type="text"
+          name="verify"
+          ngModel
+          value="Enter 'Delete Me' Here"
+        />
+        <button (click)="toggleDelete()" class="w3-button w3-blue">
+          Cancel
+        </button>
+        <input
+          id="deleteAccountButton"
+          class="w3-button w3-red"
+          type="submit"
+          name="submit"
+          value="Delete Account"
+          (click)="deleteAccount(deleteForm)"
+        />
+      </form>
+    </div>
+  </div>
 </div>

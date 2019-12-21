@@ -1,15 +1,104 @@
-<div id="entireThing" class="container-fluid">
+<div id="entireThing" class="w3-container">
+  <div id="contrasting" class="w3-container">
+    <p>
+      One Hundred Questions aims for a more understanding relationship.
+      <br /><br />
+      Learn, discuss, make plans, and tackle the big questions that can make or
+      break your long term relationship.
+      <br /><br />
+      You're on a journey together. Make it count. Make it worthwhile. Make it
+      good!
+    </p>
+  </div>
+  <button id="registerButton"
+    onclick="document.getElementById('registerModal').style.display='block'"
+    class="w3-button w3-blue w3-round-large"
+  >
+    Register
+  </button>
 
-  <br><br><br>
-<div id="contrasting">
-  <p><strong>
-    One Hundred Questions aims for a more understanding relationship. <br><br>
-    Learn, discuss, make plans, and tackle the big questions that can make or break your long term relationship.
-    <br><br>
-    You're on a journey together. Make it count. Make it worthwhile. Make it good!</strong>
-  </p>
-</div>
-<br>
+  <div id="registerModal" class="w3-modal">
+    <div class="w3-modal-content w3-animate-top w3-card-4">
+      <header class="w3-container w3-blue">
+        <span (click)="closeModal()" class="w3-display-topright w3-button"
+          >X</span
+        >
+        <h3>Register</h3>
+      </header>
+      <div class="w3-container">
+        <form id="registerForm" #registerForm="ngForm">
+          <label><b>Username</b></label
+          ><br />
+          <label class="badstuff" *ngIf="takenUsername">Username Taken</label>
+          <label class="badstuff" *ngIf="blankUsername"
+            >Username Cannot Be Blank</label
+          >
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="username"
+            ngModel
+            placeholder="Create Username"
+          />
+          <label><b>Password</b></label
+          ><br />
+          <label class="badstuff" *ngIf="blankPassword"
+            >Password Cannot Be Empty</label
+          >
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="password"
+            ngModel
+            placeholder="Create Password"
+          />
+          <label><b>First Name</b></label
+          ><br />
+          <label class="badstuff" *ngIf="blankName"
+            >First Name Cannot Be Blank</label
+          >
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="name"
+            ngModel
+            placeholder="Your First Name"
+          />
+          <label><b>Partner's Username</b></label
+          ><br />
+          <input
+            class="w3-input w3-border"
+            type="text"
+            name="associateUsername"
+            ngModel
+            placeholder="Your Partner's Username"
+          />
+          <br />
+          <button (click)="createNew = false" class="btn btn-warning btn-sm">
+            Cancel
+          </button>
+          <footer class="w3-container">
+            <input
+              class="w3-button w3-blue w3-display-bottomleft"
+              type="submit"
+              name="submit"
+              value="Register Account"
+              (click)="register(registerForm)"
+            />
+
+            <button
+              class="w3-button w3-blue w3-display-bottomright"
+              (click)="closeModal(); failed = false"
+            >
+              Cancel
+            </button>
+          </footer>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!--
 <div *ngIf="createNew">
 <div *ngIf="createNew" id="registerFormDiv" class="text-center">
     <span id="CreateNew"><strong>New Account</strong></span><br>
@@ -40,4 +129,5 @@
 </div>
 </div>
 <span *ngIf="!createNew" class="float-right"><button (click)="createNew = !createNew" class="btn btn-warning btn-sm">{{toggleText}}</button></span>
+</div> -->
 </div>

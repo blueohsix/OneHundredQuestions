@@ -1,7 +1,18 @@
-label{
-  color: white;
-  padding-left: 1%;
- }
- #partnerUsername {
-   padding-left: 0%;
- }
+label {
+  color: black;
+}
+form {
+  padding-top: 5px;
+  padding-bottom: 35px;
+}
+#deleteButton {
+  margin-top: 13px;
+  margin-left: 20px;
+}
+#deleteDiv {
+  padding-bottom: 20px;
+}
+#deleteAccountButton {
+  position: absolute;
+  right: 15px;
+}

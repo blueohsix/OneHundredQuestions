@@ -11,10 +11,8 @@ import { throwError } from 'rxjs';
 })
 export class QuestionService {
 
-  // private getAllUrl = 'http://localhost:8050/api/questions/'; // developmenet
-  // private getOneUrl = 'http://localhost:8050/api/question/'; // development
-  private getAllUrl = '/apps/OneHundredQuestions/api/questions/'; // production
-  private getOneUrl = '/apps/OneHundredQuestions/api/question/'; // production
+  private getAllUrl = 'api/questions/';
+  private getOneUrl = 'api/question/';
 
   loggedIn = this.auth.checkLogin();
 
@@ -28,7 +26,7 @@ export class QuestionService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<Question[]>(this.getAllUrl, httpOptions).pipe(
+    return this.http.get<Question[]>(environment.baseUrl + this.getAllUrl, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('question.service.ts index error');
@@ -45,7 +43,7 @@ export class QuestionService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get(this.getOneUrl + question.id, httpOptions ).pipe(
+    return this.http.get(environment.baseUrl + this.getOneUrl + question.id, httpOptions ).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('question.service.ts update error');

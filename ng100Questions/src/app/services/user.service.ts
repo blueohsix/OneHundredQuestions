@@ -1,3 +1,4 @@
+import { environment } from './../../environments/environment';
 import { AuthService } from './auth.service';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
@@ -10,8 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class UserService {
 
-  // private baseUrl = 'http://localhost:8050/api/'; // development
-  private baseUrl = '/apps/OneHundredQuestions/api/'; // production
+  private append = 'api/';
 
   loggedIn = this.auth.checkLogin();
   constructor(private http: HttpClient, private auth: AuthService) {}
@@ -25,7 +25,7 @@ export class UserService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.get<User[]>(this.baseUrl + 'users/', httpOptions).pipe(
+    return this.http.get<User[]>(environment.baseUrl + this.append + 'users/', httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('user.service.ts index error');
@@ -41,7 +41,7 @@ export class UserService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-      return this.http.get<User>(this.baseUrl + 'user/' + username, httpOptions)
+      return this.http.get<User>(environment.baseUrl + this.append + 'user/' + username, httpOptions)
       .pipe(
         catchError((err: any) => {
           console.error(err);
@@ -58,7 +58,7 @@ export class UserService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-        return this.http.get<User>(this.baseUrl + 'users/' + id, httpOptions).pipe(
+        return this.http.get<User>(environment.baseUrl + this.append + 'users/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('user.service.ts showById error');
@@ -74,7 +74,7 @@ export class UserService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.put<User>(this.baseUrl + 'users/' + user.id, user, httpOptions).pipe(
+    return this.http.put<User>(environment.baseUrl + this.append + 'users/' + user.id, user, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('user.service.ts update error');
@@ -90,7 +90,7 @@ export class UserService {
         'X-Requested-With': 'XMLHttpRequest'
       })
     };
-    return this.http.delete(this.baseUrl + 'users/' + id, httpOptions).pipe(
+    return this.http.delete(environment.baseUrl + this.append + 'users/' + id, httpOptions).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError('user.service.ts delete error');
