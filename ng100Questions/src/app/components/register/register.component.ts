@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
         this.createNew = false;
         this.toggleText = 'New Account';
         console.log('register(): user registered.');
+        this.closeModal();
       },
       err => {
         this.takenUsername = true;

@@ -78,13 +78,12 @@
             Cancel
           </button>
           <footer class="w3-container">
-            <input
+            <button
               class="w3-button w3-blue w3-display-bottomleft"
               type="submit"
               name="submit"
-              value="Register Account"
               (click)="register(registerForm)"
-            />
+            >Register Account</button>
 
             <button
               class="w3-button w3-blue w3-display-bottomright"
@@ -97,37 +96,4 @@
       </div>
     </div>
   </div>
-
-  <!--
-<div *ngIf="createNew">
-<div *ngIf="createNew" id="registerFormDiv" class="text-center">
-    <span id="CreateNew"><strong>New Account</strong></span><br>
-  <form id="registerForm" #registerForm="ngForm">
-    <br>
-    <label class="badstuff" *ngIf="takenUsername">Username Taken</label>
-    <label class="badstuff" *ngIf="blankUsername">Username Cannot Be Blank</label>
-    <input type="text" name="username" ngModel placeholder="Username" /><br>
-    <label class="badstuff" *ngIf="blankPassword">Password Cannot Be Empty</label>
-    <input type="text" name="password" ngModel placeholder="Password" /><br>
-    <label class="badstuff" *ngIf="blankName">First Name Cannot Be Blank</label>
-    <input type="text" name="name" ngModel placeholder="First Name" /><br>
-    <input
-      type="text"
-      name="associateUsername"
-      ngModel
-      placeholder="Partner's Username"
-    />
-    <br /><br><input
-      class="btn btn-success btn-sm"
-      type="submit"
-      name="submit"
-      value="Register Account"
-      (click)="register(registerForm)"
-    />
-    <button (click)="createNew = false" class="btn btn-warning btn-sm">Cancel</button>
-  </form>
-</div>
-</div>
-<span *ngIf="!createNew" class="float-right"><button (click)="createNew = !createNew" class="btn btn-warning btn-sm">{{toggleText}}</button></span>
-</div> -->
 </div>

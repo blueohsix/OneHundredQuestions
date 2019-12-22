@@ -13,17 +13,15 @@ Angular 8.3, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
 JUnit 5, Postman
 
 #### Planned Updates
-* Hide partner's answers for unanswered Questions
 * Password reset
-* Characters remaining in text box
-* An indication for saved vs non-saved answer
 * Filter questions by category (example: hide questions about parenting for couples who have no desire for children)
 * Export of data to PDF
 
 
 #### Changelog
 December 21st:
-  - Completed phase-out of bootstrap. Visual overhaul 90% complete. 
+  - Completed phase-out of bootstrap. Visual overhaul 90% complete.
+  - Partner's answer hidden until user answers question.
 
 December 20th:
   - Left aligned text
