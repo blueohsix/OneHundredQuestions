@@ -2,72 +2,68 @@ package com.skilldistillery.entities;
 
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name = "question")
-public class Question {
+@Table(name = "category")
+public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	@Column(name = "question")
-	private String question;
+	private String category;
 	@JsonIgnore
-	@OneToMany(mappedBy = "question")
-	private List<Answer> answers;
-	@ManyToMany
-	@JoinTable(name="question_has_category",
-		joinColumns=@JoinColumn(name="question_id"),
-		inverseJoinColumns=@JoinColumn(name="category_id")
-			)
-	private List<Category> categories;
+	@ManyToMany(mappedBy="categories")
+	private List<Question> questions;
 	
 	
-
-	public Question() {
+	public Category() {
+		super();
 	}
+
 
 	public int getId() {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
 
-	public String getQuestion() {
-		return question;
+
+	public String getCategory() {
+		return category;
 	}
 
-	public void setQuestion(String question) {
-		this.question = question;
-	}
-	
 
-	public List<Category> getCategories() {
-		return categories;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public void setCategories(List<Category> categories) {
-		this.categories = categories;
+
+	public List<Question> getQuestions() {
+		return questions;
 	}
+
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Question [id=" + id + ", question=" + question + ", categories: " + categories + "]";
+		return category;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -77,6 +73,7 @@ public class Question {
 		return result;
 	}
 
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -85,10 +82,11 @@ public class Question {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Question other = (Question) obj;
+		Category other = (Category) obj;
 		if (id != other.id)
 			return false;
 		return true;
 	}
+	
 
 }

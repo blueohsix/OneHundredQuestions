@@ -151,7 +151,10 @@ export class QuestionComponent implements OnInit {
     try {
       const answer = this.player1Answers.find(a => a.question.id === qid)
         .answer;
-      return true;
+      if (answer.length > 1) {
+        return true;
+      }
+      return false;
     } catch (error) {
       return false;
     }
@@ -179,39 +182,37 @@ export class QuestionComponent implements OnInit {
   }
 
   saveAnswer(form: NgForm, qid: number) {
-    if (form.value.answer) {
-      let answer = this.player1Answers.find(a => a.question.id === qid);
-      if (answer) {
-        answer.answer = form.value.answer;
-        answer.user = new User();
-        answer.user.id = this.player1.id;
-        this.answerService.update(answer, answer.id).subscribe(
-          lifeIsGood => {
-            console.log('answer updated successfully');
-          },
-          whenThingsGoBad => {
-            console.error('error in saveAnswer()');
-          }
-        );
-      }
-      if (!answer) {
-        answer = new Answer();
-        answer.answer = form.value.answer;
-        answer.question = new Question();
-        answer.question.id = qid;
-        answer.user = new User();
-        answer.user.id = this.player1.id;
-        console.log('new answer: ' + answer);
-        this.answerService.create(answer).subscribe(
-          lifeIsGood => {
-            console.log('answer created and saved successfully');
-            this.player1Answers.push(answer);
-          },
-          whenThingsGoBad => {
-            console.error('error in saveAnswer()');
-          }
-        );
-      }
+    let answer = this.player1Answers.find(a => a.question.id === qid);
+    if (answer) {
+      answer.answer = form.value.answer;
+      answer.user = new User();
+      answer.user.id = this.player1.id;
+      this.answerService.update(answer, answer.id).subscribe(
+        lifeIsGood => {
+          console.log('answer updated successfully');
+        },
+        whenThingsGoBad => {
+          console.error('error in saveAnswer()');
+        }
+      );
+    }
+    if (!answer) {
+      answer = new Answer();
+      answer.answer = form.value.answer;
+      answer.question = new Question();
+      answer.question.id = qid;
+      answer.user = new User();
+      answer.user.id = this.player1.id;
+      console.log('new answer: ' + answer);
+      this.answerService.create(answer).subscribe(
+        lifeIsGood => {
+          console.log('answer created and saved successfully');
+          this.player1Answers.push(answer);
+        },
+        whenThingsGoBad => {
+          console.error('error in saveAnswer()');
+        }
+      );
     }
   }
 }

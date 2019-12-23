@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.entities.Question;
+import com.skilldistillery.repositories.CategoryRepository;
 import com.skilldistillery.repositories.QuestionRepository;
 
 @Service

@@ -1,7 +1,6 @@
 package com.skilldistillery.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,10 +13,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-class QuestionTests {
+class CategoryTests {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Question question;
+	private Category category;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,27 +32,21 @@ class QuestionTests {
 	@BeforeEach
 	void setUp() throws Exception {
 		 em = emf.createEntityManager();
-		 question = em.find(Question.class, 1);
+		 category = em.find(Category.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		question = null;
+		category = null;
 	}
 	
 
 	@Test
-	@DisplayName("Tests if the question table is mapped correctly")
+	@DisplayName("Tests if the category table is mapped correctly")
 	void test() {
-		assertEquals(1, question.getId());
-		assertNotNull(question.getQuestion());
-	}
-	@Test
-	@DisplayName("Tests if the category table is linked correctly")
-	void test1() {
-		assertEquals(1, question.getCategories().size());
-		
+		assertEquals(1, category.getId());
+		assertEquals("Parenting", category.getCategory());
 	}
 
 }

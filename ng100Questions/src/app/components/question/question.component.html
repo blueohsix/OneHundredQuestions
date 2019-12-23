@@ -47,21 +47,21 @@
             </textarea>
           </div>
           <input
-            id="saveButton"
-            class="w3-button w3-blue w3-round-large"
+
+            class="w3-button w3-blue w3-round-large saveButton"
             type="button"
             value="Save"
             (click)="saveAnswer(newAnswerForm, question.id)"
           /><br />
           <br />
-          <div *ngIf="!answered(question.id)">
-            Answer to see <strong>{{ player2.name }}'s</strong> answer
-          </div>
-          <div *ngIf="answered(question.id)">
-            <strong>{{ player2.name }}:</strong> <br />
-              {{ safelyRetrieveAnswer(question.id, 2) }}
-          </div>
         </form>
+        <div *ngIf="!answered(question.id)" class="partnerArea">
+          Answer to see <strong>{{ player2.name }}'s</strong> answer
+        </div>
+        <div *ngIf="answered(question.id)" class="partnerArea">
+          <strong>{{ player2.name }}:</strong> <br />
+            {{ safelyRetrieveAnswer(question.id, 2) }}
+        </div>
       </div>
     </div>
   </div>
