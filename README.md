@@ -14,7 +14,6 @@ JUnit 5, Postman
 
 #### Planned Updates
 * Password reset
-* Filter questions by category (example: hide questions about parenting for couples who have no desire for children)
 * Export of data to PDF
 
 
@@ -23,7 +22,7 @@ December 24th:
   - Filter questions by category
   - Search questions and answers by keyword
   - Visual overhaul complete (yay W3.CSS!)
-  - indicator for unsaved answer 
+  - indicator for unsaved answer
 
 December 21st:
   - Completed phase-out of bootstrap. Visual overhaul 90% complete.
