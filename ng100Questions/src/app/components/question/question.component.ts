@@ -43,13 +43,11 @@ export class QuestionComponent implements OnInit {
     const button = document.getElementById('saveButton' + qid);
     button.textContent = 'Save Changes';
     button.className = 'w3-button w3-blue w3-round-large saveButton';
-    // this.buttonColor = 'w3-blue';
   }
   resetButtonTextContent(qid) {
     const button = document.getElementById('saveButton' + qid);
     button.textContent = 'No Changes to Save';
     button.className = 'w3-button w3-pale-green w3-round-large saveButton';
-    // this.buttonColor = 'w3-pale-green';
   }
 
   expandPanel(id: string) {
