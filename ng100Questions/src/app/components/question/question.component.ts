@@ -42,12 +42,14 @@ export class QuestionComponent implements OnInit {
   detectChanges(qid) {
     const button = document.getElementById('saveButton' + qid);
     button.textContent = 'Save Changes';
-    this.buttonColor = 'w3-blue';
+    button.className = 'w3-button w3-blue w3-round-large saveButton';
+    // this.buttonColor = 'w3-blue';
   }
   resetButtonTextContent(qid) {
     const button = document.getElementById('saveButton' + qid);
     button.textContent = 'No Changes to Save';
-    this.buttonColor = 'w3-pale-green';
+    button.className = 'w3-button w3-pale-green w3-round-large saveButton';
+    // this.buttonColor = 'w3-pale-green';
   }
 
   expandPanel(id: string) {
@@ -263,6 +265,8 @@ export class QuestionComponent implements OnInit {
       console.log('new answer: ' + answer);
       this.answerService.create(answer).subscribe(
         lifeIsGood => {
+          // @ts-ignore
+          answer.id = lifeIsGood.id;
           this.resetButtonTextContent(answer.question.id);
           console.log('answer created and saved successfully');
           this.player1Answers.push(answer);

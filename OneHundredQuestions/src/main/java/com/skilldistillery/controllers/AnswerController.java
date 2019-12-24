@@ -67,9 +67,7 @@ public class AnswerController {
 
 			Answer updatedAnswer = service.updateAnswer(id, answer);
 			StringBuffer url = request.getRequestURL();
-			url.append("/");
-			url.append(updatedAnswer.getId());
-			System.err.println(url);
+			System.err.println("Line 70, AnswerController: " + url);
 			response.setStatus(200);
 			response.setHeader("Location", url.toString());
 			return updatedAnswer;
@@ -89,9 +87,8 @@ public class AnswerController {
 
 			Answer newAnswer = service.createAnswer(answer);
 			StringBuffer url = request.getRequestURL();
-			url.append("/");
 			url.append(newAnswer.getId());
-			System.err.println(url);
+			System.err.println("Line 91, AnswerController: " + url);
 			response.setStatus(200);
 			response.setHeader("Location", url.toString());
 			return newAnswer;

@@ -19,10 +19,14 @@ JUnit 5, Postman
 
 #### Changelog
 December 24th:
+  (morning update)
   - Filter questions by category
   - Search questions and answers by keyword
   - Visual overhaul complete (yay W3.CSS!)
   - indicator for unsaved answer
+  (afternoon update)
+  - fixed a bug that prevented a new answer from being updated.
+  - fixed a bug that swapped inactive answer indicator colors when an active answer field was being manipulated 
 
 December 21st:
   - Completed phase-out of bootstrap. Visual overhaul 90% complete.
@@ -30,7 +34,7 @@ December 21st:
 
 December 20th:
   - Left aligned text
-  - Visual overhaul via W3-CSS. Cleaner, more functional. Starting phase-out of bootstrap.
+  - Visual overhaul via W3.CSS. Cleaner, more functional. Starting phase-out of bootstrap.
 
 December 16th:
   - Removed extra "to" on Question 99
