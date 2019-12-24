@@ -19,6 +19,12 @@ JUnit 5, Postman
 
 
 #### Changelog
+December 24th:
+  - Filter questions by category
+  - Search questions and answers by keyword
+  - Visual overhaul complete (yay W3.CSS!)
+  - indicator for unsaved answer 
+
 December 21st:
   - Completed phase-out of bootstrap. Visual overhaul 90% complete.
   - Partner's answer hidden until user answers question.
