@@ -35,13 +35,11 @@ Login
           placeholder="Enter Password"
         />
         <footer class="w3-container">
-          <input
+          <button
             class="w3-button w3-blue w3-display-bottomleft"
             type="submit"
             name="submit"
-            value="Login"
-            (click)="login(loginForm)"
-          />
+            (click)="login(loginForm)">Login</button>
           <button class="w3-button w3-blue w3-display-bottomright" (click)="closeModal(); failed = false">Cancel</button>
         </footer>
       </form>

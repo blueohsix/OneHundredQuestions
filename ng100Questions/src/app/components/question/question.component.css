@@ -1,6 +1,9 @@
 .w3-block {
   white-space: normal;
 }
+button {
+  white-space: normal;
+}
 .answerArea {
   padding-left: 5%;
   padding-right: 5%;
@@ -24,4 +27,8 @@ blockquote {
 .saveButton {
   position: absolute;
   right: 5%;
+}
+.filterInputs {
+  position: relative;
+  left: 6%;
 }

@@ -1,58 +1,208 @@
 <br /><br />
-<div id="questionDiv" *ngIf="fullyLoaded && checkLogin()">
-  <div name="mainContainer">
-    <button (click)="expandPanel('mandolin')" class="w3-btn w3-block w3-indigo">
-      Captain Corelli's Mandolin
+<div class="w3-row w3-topbar w3-border-blue">
+  <div *ngIf="checkLogin()">
+    <button
+      (click)="expandPanel('mandolin')"
+      class=" w3-col s8 w3-btn w3-border w3-metro-dark-blue"
+    >
+      Captain Corelli's <br />
+      Mandolin
     </button>
+    <button
+      onclick="document.getElementById('filterModal').style.display='block'"
+      class="w3-col s4 w3-btn w3-border w3-metro-dark-blue"
+    >
+      Filter <br />
+      Questions
+    </button>
+    <div id="filterModal" class="w3-modal">
+      <div class="w3-modal-content w3-animate-top w3-card-4">
+        <header class="w3-container w3-blue">
+          <span (click)="closeModal()" class="w3-display-topright w3-button"
+            >X</span
+          >
+          <h3>Filter</h3>
+        </header>
 
-    <div id="mandolin" class="w3-hide w3-container w3-center w3-light-grey">
-      <blockquote>
-        “Love is a temporary madness. It erupts like an earthquake and then
-        subsides. And when it subsides you have to make a decision. You have to
-        work out whether your roots have become so entwined together that it is
-        inconceivable that you should ever part. Because this is what love is.
-        Love is not breathlessness, it is not excitement, it is not the
-        promulgation of promises of eternal passion. That is just being "in
-        love" which any of us can convince ourselves we are. Love itself is what
-        is left over when being in love has burned away, and this is both an art
-        and a fortunate accident. Your mother and I had it, we had roots that
-        grew towards each other underground, and when all the pretty blossoms
-        had fallen from our branches we found that we were one tree and not
-        two.”<br /><br />
-        - Louis de Bernières
-      </blockquote>
+        <div class="w3-container">
+          <br />
+          <div id="search">
+            <form id="searchForm" #searchForm="ngForm" (ngSubmit)="searchForm.reset()">
+              <input
+                id="searchField"
+                class="w3-input w3-border"
+                type="text"
+                name="query"
+                ngModel
+                placeholder="Search Questions and Answers by Keyword"
+              />
+              <button
+                class="w3-button w3-blue w3-right"
+                type="submit"
+                name="submit"
+                (click)="searchQuestions(searchForm); "
+              >
+                Search
+              </button>
+            </form>
+            <button class="w3-button w3-blue w3-display-bottomright" (click)="resetList()">
+              Reset List
+            </button>
+          </div>
+          <br>
+          <br>
+          <span class="filterInputs">
+            <label class="w3-left"><b>Categories</b></label>
+            <div class="w3-row">
+              <div class="w3-col s6">
+                <input
+                  (click)="filterList('all')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="0"
+                  checked
+                />
+                <label>All</label><br />
+                <input
+                  (click)="filterList('Parenting')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="1"
+                />
+                <label>Parenting</label><br />
+                <input
+                  (click)="filterList('Conflict')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="2"
+                />
+                <label>Conflict</label><br />
+                <input
+                  (click)="filterList('Ideology')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="3"
+                />
+                <label>Ideology</label><br />
+                <input
+                  (click)="filterList('Money')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="4"
+                />
+                <label>Money</label><br />
+                <input
+                  (click)="filterList('Liesure')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="5"
+                />
+                <label>Leisure</label><br />
+              </div>
+              <div class="w3-col s6">
+                <input
+                  (click)="filterList('Family')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="6"
+                />
+                <label>Family</label><br />
+                <input
+                  (click)="filterList('Health')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="7"
+                />
+                <label>Health</label><br />
+                <input
+                  (click)="filterList('Miscellaneous')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="8"
+                />
+                <label>Miscellaneous</label><br />
+                <input
+                  (click)="filterList('Marriage')"
+                  class="w3-radio"
+                  type="radio"
+                  name="Category"
+                  value="9"
+                />
+                <label>Marriage</label>
+              </div>
+            </div>
+          </span>
+          <br />
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div *ngFor="let question of questions" class="w3-border w3-round-large" >
+  <div
+    id="mandolin"
+    class="w3-hide w3-container w3-bottombar w3-center w3-light-grey"
+  >
+    <blockquote>
+      “Love is a temporary madness. It erupts like an earthquake and then
+      subsides. And when it subsides you have to make a decision. You have to
+      work out whether your roots have become so entwined together that it is
+      inconceivable that you should ever part. Because this is what love is.
+      Love is not breathlessness, it is not excitement, it is not the
+      promulgation of promises of eternal passion. That is just being "in love"
+      which any of us can convince ourselves we are. Love itself is what is left
+      over when being in love has burned away, and this is both an art and a
+      fortunate accident. Your mother and I had it, we had roots that grew
+      towards each other underground, and when all the pretty blossoms had
+      fallen from our branches we found that we were one tree and not two.”<br /><br />
+      - Louis de Bernières
+    </blockquote>
+  </div>
+
+  <div id="questionDiv" *ngIf="fullyLoaded && checkLogin()">
+    <div *ngFor="let question of filtered" class="w3-border w3-round-large">
       <button
         (click)="expandPanel(question.id)"
-        class="w3-button w3-block w3-left-align w3-light-gray"
+        class="w3-button w3-block w3-left-align {{
+          changeQuestionColor(question.id)
+        }}"
       >
         {{ question.id }}: {{ question.question }}
       </button>
+
 
       <div id="{{ question.id }}" class="w3-hide">
         <form class="answerArea" #newAnswerForm="ngForm">
           <div class="md-form">
             <strong>{{ player1.name }}:</strong> <br />
-            <textarea
+            <textarea id="answerTextArea{{question.id}}"
               class="md-textarea md-textarea-auto form-control w3-input w3-border"
-              mdbInput
               name="answer"
               cols="50"
               rows="3"
               placeholder="Answer Question Here"
+              maxlength="65000"
               [ngModel]="safelyRetrieveAnswer(question.id, 1)"
+              (keyup)="detectChanges(question.id)"
+              (paste)="detectChanges(question.id)"
+              (input)="detectChanges(question.id)"
             >
             </textarea>
           </div>
-          <input
-
-            class="w3-button w3-blue w3-round-large saveButton"
+          <button
+            id="saveButton{{question.id}}"
+            class="w3-button {{buttonColor}} w3-round-large saveButton"
             type="button"
-            value="Save"
             (click)="saveAnswer(newAnswerForm, question.id)"
-          /><br />
+          >No Changes to Save</button><br />
           <br />
         </form>
         <div *ngIf="!answered(question.id)" class="partnerArea">
@@ -60,7 +210,7 @@
         </div>
         <div *ngIf="answered(question.id)" class="partnerArea">
           <strong>{{ player2.name }}:</strong> <br />
-            {{ safelyRetrieveAnswer(question.id, 2) }}
+          {{ safelyRetrieveAnswer(question.id, 2) }}
         </div>
       </div>
     </div>

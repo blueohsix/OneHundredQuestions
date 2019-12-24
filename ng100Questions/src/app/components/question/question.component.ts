@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../profile/profile.component';
 import { Answer } from './../../models/answer';
 import { UserService } from './../../services/user.service';
 import { AuthService } from './../../services/auth.service';
@@ -15,6 +16,7 @@ import { NgForm } from '@angular/forms';
 })
 export class QuestionComponent implements OnInit {
   questions: Question[] = [];
+  filtered: Question[] = [];
   player1Answers: Answer[] = [];
   player2Answers: Answer[] = [];
   player1: User;
@@ -23,6 +25,8 @@ export class QuestionComponent implements OnInit {
   selectedAnswer: Answer;
   editedAnswer: string;
   check = String.fromCodePoint(0x2705);
+  questionColor: string;
+  buttonColor = 'w3-pale-green';
 
   constructor(
     private questionService: QuestionService,
@@ -35,6 +39,17 @@ export class QuestionComponent implements OnInit {
     this.reload();
   }
 
+  detectChanges(qid) {
+    const button = document.getElementById('saveButton' + qid);
+    button.textContent = 'Save Changes';
+    this.buttonColor = 'w3-blue';
+  }
+  resetButtonTextContent(qid) {
+    const button = document.getElementById('saveButton' + qid);
+    button.textContent = 'No Changes to Save';
+    this.buttonColor = 'w3-pale-green';
+  }
+
   expandPanel(id: string) {
     const panel = document.getElementById(id);
     if (panel.className.indexOf('w3-show') === -1) {
@@ -42,6 +57,12 @@ export class QuestionComponent implements OnInit {
     } else {
       panel.className = panel.className.replace(' w3-show', '');
     }
+  }
+
+  changeQuestionColor(qid) {
+    return this.answered(qid)
+      ? 'w3-metro-dark-blue w3-hover-blue'
+      : 'w3-light-gray w3-hover-blue';
   }
 
   checkLogin() {
@@ -61,6 +82,7 @@ export class QuestionComponent implements OnInit {
       this.questionService.index().subscribe(
         lifeIsGood => {
           this.questions = lifeIsGood;
+          this.filtered = this.questions;
           this.getNames();
         },
         whenThingsGoBad => {
@@ -68,6 +90,50 @@ export class QuestionComponent implements OnInit {
         }
       );
     }
+  }
+
+  filterList(selection) {
+    this.filtered = null;
+    this.filtered = [];
+    if (selection === 'all') {
+      this.filtered = this.questions;
+    } else {
+      for (const question of this.questions) {
+        question.categories[0].category === selection
+          ? this.filtered.push(question)
+          : console.log('question does not match filter');
+      }
+      console.log(this.filtered);
+    }
+    this.closeModal();
+  }
+  resetList() {
+    this.filtered = null;
+    this.filtered = this.questions;
+    this.closeModal();
+  }
+
+  searchQuestions(form) {
+    this.filtered = null;
+    this.filtered = [];
+    console.log(form.value);
+    for (const question of this.questions) {
+      question.question.search(form.value.query) !== -1
+        ? this.filtered.push(question)
+        : console.log('question does not match query');
+      }
+    for (const answer of this.player1Answers) {
+      console.log(answer);
+
+      answer.answer.search(form.value.query) !== -1
+        ? this.filtered.push(this.questions[answer.question.id - 1])
+        : console.log('answer does not match query');
+      }
+    this.closeModal();
+  }
+
+  closeModal() {
+    document.getElementById('filterModal').style.display = 'none';
   }
 
   getNames() {
@@ -113,19 +179,6 @@ export class QuestionComponent implements OnInit {
     this.answerService.answersByUserId(uid).subscribe(
       lifeIsGood => {
         this.player1Answers = lifeIsGood;
-        // tslint:disable-next-line: prefer-for-of
-        for (let i = 0; i < this.questions.length; i++) {
-          if (i < this.player1Answers.length) {
-            if (this.player1Answers[i].answer) {
-              // tslint:disable-next-line: max-line-length
-              this.questions[this.player1Answers[i].question.id - 1].question =
-                this.questions[this.player1Answers[i].question.id - 1]
-                  .question +
-                ' ' +
-                this.check;
-            }
-          }
-        }
         if (!this.player1.associateUsername) {
           this.fullyLoaded = true;
         }
@@ -147,6 +200,7 @@ export class QuestionComponent implements OnInit {
       }
     );
   }
+
   answered(qid: number) {
     try {
       const answer = this.player1Answers.find(a => a.question.id === qid)
@@ -189,10 +243,13 @@ export class QuestionComponent implements OnInit {
       answer.user.id = this.player1.id;
       this.answerService.update(answer, answer.id).subscribe(
         lifeIsGood => {
+          this.resetButtonTextContent(answer.question.id);
           console.log('answer updated successfully');
         },
         whenThingsGoBad => {
           console.error('error in saveAnswer()');
+          console.log(answer);
+
         }
       );
     }
@@ -206,11 +263,14 @@ export class QuestionComponent implements OnInit {
       console.log('new answer: ' + answer);
       this.answerService.create(answer).subscribe(
         lifeIsGood => {
+          this.resetButtonTextContent(answer.question.id);
           console.log('answer created and saved successfully');
           this.player1Answers.push(answer);
         },
         whenThingsGoBad => {
           console.error('error in saveAnswer()');
+          console.log(answer);
+
         }
       );
     }
