@@ -1,5 +1,7 @@
 ## One Hundred Questions
-    *This is an active repository*
+
+#### Dummy username and password ['test' : 'test']
+
     *Application has active users*
 
 Hosted on caseyasher.info at [/apps/OneHundredQuestions](http://www.caseyasher.info/apps/OneHundredQuestions/).
