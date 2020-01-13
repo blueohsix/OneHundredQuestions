@@ -13,6 +13,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RecoveryComponent } from './components/recovery/recovery.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { RegisterComponent } from './components/register/register.component';
     LogoutComponent,
     ProfileComponent,
     HeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    RecoveryComponent
   ],
   imports: [
     BrowserModule,
