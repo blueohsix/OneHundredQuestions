@@ -4,7 +4,7 @@
 
     *Application has active users*
 
-Hosted on caseyasher.info at [/apps/OneHundredQuestions](http://www.caseyasher.info/apps/OneHundredQuestions/).
+Hosted on caseyasher.info at [/apps/OneHundredQuestions](https://caseyasher.info/apps/OneHundredQuestions/).
 
 This webapp's aim is to provide a place where couples can ponder and answer one hundred of the most common pre-marital counseling questions in a format that is convenient and retains the answers for years to come.
 
