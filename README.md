@@ -2,14 +2,12 @@
 
 #### Dummy username and password ['test' : 'test']
 
-    *Application has active users*
-
 Hosted on caseyasher.info at [/apps/OneHundredQuestions](https://caseyasher.info/apps/OneHundredQuestions/).
 
 This webapp's aim is to provide a place where couples can ponder and answer one hundred of the most common pre-marital counseling questions in a format that is convenient and retains the answers for years to come.
 
 #### Tools Used
-Angular 8.3, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
+Angular 9.0, Spring Boot, Java, Typescript, Javascript, HTML, CSS, MySql
 
 #### Testing
 JUnit 5, Postman
@@ -20,6 +18,10 @@ JUnit 5, Postman
 
 
 #### Changelog
+
+##### March 12th, 2020:
+  - Loading icon upon login while queries are executing
+
 ##### December 24th:
 
   (morning update)
