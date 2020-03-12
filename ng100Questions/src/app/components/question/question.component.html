@@ -34,7 +34,7 @@
                 type="text"
                 name="query"
                 ngModel
-                placeholder="Search Questions and Answers by Keyword"
+                placeholder="Search Q's and A's by Keyword"
               />
               <button
                 class="w3-button w3-blue w3-right"
@@ -165,6 +165,10 @@
       fallen from our branches we found that we were one tree and not two.”<br /><br />
       - Louis de Bernières
     </blockquote>
+  </div>
+
+  <div *ngIf="checkLogin() && !fullyLoaded">
+    <img class="w3-display-middle" src="assets/loading.gif" alt="loading icon">
   </div>
 
   <div id="questionDiv" *ngIf="fullyLoaded && checkLogin()">
