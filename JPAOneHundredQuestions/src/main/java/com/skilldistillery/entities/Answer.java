@@ -20,7 +20,7 @@ public class Answer {
 	@JoinColumn(name = "question_id")
 	private Question question;
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "end_user_id")
 	private User user;
 
 	public Answer() {
