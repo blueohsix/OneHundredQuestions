@@ -36,9 +36,9 @@
 		</properties> -->
 		<properties>
             <property name="javax.persistence.jdbc.url" 
-           		value="jdbc:sqlserver://localhost:1433;databaseName=OneHundredQuestions" />
-			<property name="javax.persistence.jdbc.user" value="sa" />
-			<property name="javax.persistence.jdbc.password" value="SqlS3rv3rP@ssW0rd" />
+           		value="jdbc:sqlserver://caseyasher-sql-server.clyzxhfe85qf.us-east-2.rds.amazonaws.com:1433;databaseName=OneHundredQuestions" />
+			<property name="javax.persistence.jdbc.user" value="admin" />
+			<property name="javax.persistence.jdbc.password" value="SqlS3rv3rPAssW0rd" />
 			<property name="javax.persistence.jdbc.driver" 
 				value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
 			<property name="hibernate.show_sql" value="false" />
