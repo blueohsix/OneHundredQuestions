@@ -18,6 +18,8 @@ JUnit 5, Postman
 
 
 #### Changelog
+##### April 19, 2020:
+  - backend database swapped to Microsoft SQL Server Express
 
 ##### March 12th, 2020:
   - Loading icon upon login while queries are executing
