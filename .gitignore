@@ -10,5 +10,5 @@ bin
 *.bak
 /DB
 /questions
-JPAOneHundredQuestions/src/main/resources/META-INF/persistence.xml
+JPAOneHundredQuestions/src/main/resources/META-INF/persistence.xml 
 OneHundredQuestions/src/main/resources/application.properties
