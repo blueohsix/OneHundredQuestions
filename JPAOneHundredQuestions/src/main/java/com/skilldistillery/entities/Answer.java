@@ -41,19 +41,19 @@ public class Answer {
 	public void setAnswer(String answer) {
 		this.answer = answer;
 	}
+	
+	public String getUsername() {
+		return user.getUsername();
+	}
 
-	public Question getQuestion() {
-		return question;
+	public int getQuestion() {
+		return question.getId();
 	}
 
 	public void setQuestion(Question question) {
 		this.question = question;
 	}
 
-//	public User getUser() {
-//		return user;
-//	}
-//
 	public void setUser(User user) {
 		this.user = user;
 	}

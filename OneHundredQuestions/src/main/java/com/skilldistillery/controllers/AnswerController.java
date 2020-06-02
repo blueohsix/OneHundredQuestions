@@ -26,31 +26,12 @@ public class AnswerController {
 	@Autowired
 	private AnswerService service;
 
-	@GetMapping("answers")
+	/* Returns a list of Answers; Half of the logged in user;
+	 half of their associated username */
+	@GetMapping("answer")
 	public List<Answer> index(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		try {
-			List<Answer> answers = service.showAll();
-			if (answers == null) {
-				response.setStatus(404);
-			} else {
-				response.setStatus(200);
-			}
-			return answers;
-		} catch (Exception e) {
-			response.setStatus(400);
-			e.printStackTrace();
-			return null;
-		}
-	}
-	@GetMapping("answer/{uid}")
-	public List<Answer> answersByUserId(@PathVariable Integer uid, HttpServletRequest request, HttpServletResponse response, Principal principal) {
-		try {
-			List<Answer> answers = service.showByUserId(uid);
-			if (answers == null) {
-				response.setStatus(404);
-			} else {
-				response.setStatus(200);
-			}
+			List<Answer> answers = service.findByUsername(principal.getName());
 			return answers;
 		} catch (Exception e) {
 			response.setStatus(400);
