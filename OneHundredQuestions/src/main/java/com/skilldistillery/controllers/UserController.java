@@ -1,7 +1,6 @@
 package com.skilldistillery.controllers;
 
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,30 +27,12 @@ public class UserController {
 	@Autowired
 	private UserService serv;
 	
-	
-	@GetMapping("users")
-	public List<User> index(Principal principal) {
-		return serv.index();
-	}
-	
-
-	@GetMapping("users/{id}")
-	public User show(@PathVariable("id") int id, HttpServletResponse resp, Principal principal) {
-		User user = serv.showById(id);
-		if (user != null) {
-			resp.setStatus(200);
-		} else {
-			resp.setStatus(404);
-		}
-		return user;
-	}
-	
-	@GetMapping("user/{username}")
-	public User findByUsername(@PathVariable("username") String username, Principal principal) {
-		return serv.findByUsername(username);
+	@GetMapping("user")
+	public User findByUsername(Principal principal) {
+		return serv.findByUsername(principal.getName());
 	}
 
-	@PostMapping("users")
+	@PostMapping("user")
 	public User create(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req,
 			Principal principal) {
 		User created = null;
@@ -69,7 +50,7 @@ public class UserController {
 		return created;
 	}
 
-	@PutMapping("users/{id}")
+	@PutMapping("user/{id}")
 	public User update(@PathVariable("id") int id, @RequestBody User user, HttpServletResponse resp,
 			Principal principal) {
 		User updated = null;
@@ -88,7 +69,7 @@ public class UserController {
 		return updated;
 	}
 
-	@DeleteMapping("users/{id}")
+	@DeleteMapping("user/{id}")
 	public void delete(@PathVariable("id") int id, HttpServletResponse resp, Principal principal) {
 		try {
 			if (serv.deleteUser(id)) {

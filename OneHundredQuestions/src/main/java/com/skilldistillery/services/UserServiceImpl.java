@@ -1,6 +1,5 @@
 package com.skilldistillery.services;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,21 +17,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private PasswordEncoder encoder;
 
-	@Override
-	public List<User> index() {
-		return repo.findAll();
-	}
-
-	@Override
-	public User showById(Integer id) {
-		Optional<User> user = repo.findById(id);
-		if (user.isPresent()) {
-			return user.get();
-		} else {
-			return null;
-		}
-	}
-	
 	@Override
 	public User findByUsername(String username) {
 		return repo.findByUsername(username);
