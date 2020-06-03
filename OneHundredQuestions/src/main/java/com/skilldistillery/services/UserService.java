@@ -10,6 +10,6 @@ public interface UserService {
 
 	User updateUser(Integer id, User user);
 
-	Boolean deleteUser(Integer id);
+	Boolean deleteUser(String username);
 
 }

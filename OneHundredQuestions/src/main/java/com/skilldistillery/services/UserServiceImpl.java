@@ -51,10 +51,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Boolean deleteUser(Integer id) {
-		Optional<User> userOpt = repo.findById(id);
-		if(userOpt.isPresent()) {
-			repo.delete(userOpt.get());
+	public Boolean deleteUser(String username) {
+		User user = repo.findByUsername(username);
+		if(user.getId() > 0) {
+			repo.delete(user);
 			return true;
 		}
 		else {

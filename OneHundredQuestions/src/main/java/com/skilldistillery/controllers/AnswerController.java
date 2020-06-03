@@ -32,6 +32,7 @@ public class AnswerController {
 	public List<Answer> index(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		try {
 			List<Answer> answers = service.findByUsername(principal.getName());
+			response.setStatus(200);
 			return answers;
 		} catch (Exception e) {
 			response.setStatus(400);
@@ -43,16 +44,12 @@ public class AnswerController {
 	@PutMapping("answer/{id}")
 	public Answer updateAnswer(@PathVariable Integer id, @RequestBody Answer answer, HttpServletRequest request,
 			HttpServletResponse response, Principal principal) {
-
 		try {
-
 			Answer updatedAnswer = service.updateAnswer(id, answer);
 			StringBuffer url = request.getRequestURL();
-			System.err.println("Line 70, AnswerController: " + url);
 			response.setStatus(200);
 			response.setHeader("Location", url.toString());
 			return updatedAnswer;
-
 		} catch (Exception e) {
 			response.setStatus(400);
 			e.printStackTrace();
@@ -63,17 +60,13 @@ public class AnswerController {
 	@PostMapping("answer/") 
 		public Answer createAnswer(@RequestBody Answer answer, HttpServletRequest request,
 			HttpServletResponse response, Principal principal) {
-		
 		try {
-
 			Answer newAnswer = service.createAnswer(answer);
 			StringBuffer url = request.getRequestURL();
 			url.append(newAnswer.getId());
-			System.err.println("Line 91, AnswerController: " + url);
 			response.setStatus(200);
 			response.setHeader("Location", url.toString());
 			return newAnswer;
-
 		} catch (Exception e) {
 			response.setStatus(400);
 			e.printStackTrace();

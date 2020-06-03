@@ -25,62 +25,60 @@ import com.skilldistillery.services.UserService;
 public class UserController {
 
 	@Autowired
-	private UserService serv;
-	
+	private UserService service;
+
 	@GetMapping("user")
 	public User findByUsername(Principal principal) {
-		return serv.findByUsername(principal.getName());
+		return service.findByUsername(principal.getName());
 	}
 
 	@PostMapping("user")
-	public User create(@RequestBody User user, HttpServletResponse resp, HttpServletRequest req,
-			Principal principal) {
+	public User create(@RequestBody User user, HttpServletResponse response, HttpServletRequest request, Principal principal) {
 		User created = null;
 		try {
-			created = serv.createUser(user);
-			StringBuffer url = req.getRequestURL();
+			created = service.createUser(user);
+			StringBuffer url = request.getRequestURL();
 			url.append("/" + created.getId());
-			resp.setStatus(201);
-			resp.setHeader("Location", url.toString());
+			response.setStatus(201);
+			response.setHeader("Location", url.toString());
 
 		} catch (Exception e) {
-			System.err.println(e);
-			resp.setStatus(400);
+			e.printStackTrace();
+			response.setStatus(400);
 		}
 		return created;
 	}
 
 	@PutMapping("user/{id}")
-	public User update(@PathVariable("id") int id, @RequestBody User user, HttpServletResponse resp,
+	public User update(@PathVariable("id") int id, @RequestBody User user, HttpServletResponse response,
 			Principal principal) {
 		User updated = null;
 		try {
-			updated = serv.updateUser(id, user);
-			if (updated != null) {
-				resp.setStatus(200);
+			if (principal.getName().equalsIgnoreCase(user.getUsername())) {
+				updated = service.updateUser(id, user);
+				response.setStatus(200);
 			} else {
-				resp.setStatus(404);
+				response.setStatus(404);
 			}
-
 		} catch (Exception e) {
-			System.err.println(e);
-			resp.setStatus(400);
+			e.printStackTrace();
+			response.setStatus(400);
 		}
 		return updated;
 	}
-
-	@DeleteMapping("user/{id}")
-	public void delete(@PathVariable("id") int id, HttpServletResponse resp, Principal principal) {
+	@DeleteMapping("user")
+	public void delete(HttpServletResponse response, Principal principal) {
 		try {
-			if (serv.deleteUser(id)) {
-				resp.setStatus(204);
-			} else {
-				resp.setStatus(404);
+			if (principal.getName().equalsIgnoreCase(service.findByUsername(principal.getName()).getUsername())) {
+				if (service.deleteUser(principal.getName())) {
+					response.setStatus(204);
+				} else {
+					response.setStatus(404);
+				}
 			}
-
 		} catch (Exception e) {
-			resp.setStatus(400);
+			e.printStackTrace();
+			response.setStatus(400);
 		}
 	}
-	
 }

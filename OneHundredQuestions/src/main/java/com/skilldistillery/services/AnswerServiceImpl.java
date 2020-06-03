@@ -26,7 +26,7 @@ public class AnswerServiceImpl implements AnswerService {
 			answers.addAll(answerRepo.findByUserUsername(user.getAssociateUsername()));
 			return answers;
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e.getMessage());
 			return answers;
 		}
 	}
@@ -51,7 +51,6 @@ public class AnswerServiceImpl implements AnswerService {
 	public Answer createAnswer(Answer answer) {
 		try {
 			return answerRepo.saveAndFlush(answer);
-			
 		}
 		catch(Exception e) {
 			System.err.println("Failure creating answer");

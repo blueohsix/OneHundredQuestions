@@ -22,11 +22,13 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User register(User user) {
-		String encodedPW = encoder.encode(user.getPassword());
-		user.setPassword(encodedPW); // only persist encoded password
-		System.err.println(user);
-		userRepo.saveAndFlush(user);
-		System.err.println(user);
+		if(userRepo.findByUsername(user.getUsername()) == null) {
+			String encodedPW = encoder.encode(user.getPassword());
+			user.setPassword(encodedPW); // only persist encoded password
+			System.err.println(user);
+			return userRepo.saveAndFlush(user);
+		}
+		System.err.println("Unable to register user");
 		return user;
 	}
 

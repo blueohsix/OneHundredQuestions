@@ -24,11 +24,6 @@ public class QuestionController {
 	@Autowired
 	private QuestionService service;
 
-	@GetMapping("ping")
-	public String ping() {
-		return "pong\n";
-	}
-
 	@GetMapping("questions")
 	public List<Question> index(HttpServletRequest request, HttpServletResponse response, Principal principal) {
 		try {
@@ -44,7 +39,6 @@ public class QuestionController {
 			e.printStackTrace();
 			return null;
 		}
-
 	}
 
 	@GetMapping("question/{id}")
